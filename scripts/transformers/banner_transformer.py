@@ -491,6 +491,8 @@ def determine_banner_type(name: str, cards: List[int], cards_data: List[Dict]) -
     # Name-based conditions 
     if "HAPPY BIRTHDAY" in name or "HAPPY ANNIVERSARY" in name:
         return "Birthday"
+    elif "10連無料" in name:
+        return "Free Pull"
     elif "復刻" in name:
         return "Limited Event Rerun"
     elif "セレクトリスト" in name:
@@ -531,6 +533,10 @@ def determine_banner_type(name: str, cards: List[int], cards_data: List[Dict]) -
                     return "Unit Limited Event"
                 elif first_type == "bloom_fes":
                     return "bloom_fes"
+                elif first_type == "limited_collab":
+                    return "Collab"
+                
+
     
     # Default banner type
     return "Event"
