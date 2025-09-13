@@ -152,23 +152,104 @@ def create_en_banner_from_jp(jp_banner: Dict, existing_en_banners: List[Dict], j
 
 
 def update_jp_banners_with_en_ids(jp_banners: List[Dict], en_banners: List[Dict]) -> List[Dict]:
-    # lookup dictionary for EN banners by sekai_id
-    en_banner_lookup = {banner.get("sekai_id"): banner for banner in en_banners}
+    """Update JP banners with en_id from matching EN banners, handling reruns by timing"""
+    
    
-    updated_jp_banners = []
+    en_banners_by_sekai_id = {}
+    for en_banner in en_banners:
+        sekai_id = en_banner.get("sekai_id")
+        if sekai_id not in en_banners_by_sekai_id:
+            en_banners_by_sekai_id[sekai_id] = []
+        en_banners_by_sekai_id[sekai_id].append(en_banner)
+    
+
+    jp_banners_by_sekai_id = {}
     for jp_banner in jp_banners:
-        jp_banner_copy = jp_banner.copy()
-        # sekai_id to match with EN banners
-        sekai_id = jp_banner_copy.get("sekai_id")
-        # Find matching EN banner
-        matching_en_banner = en_banner_lookup.get(sekai_id)
-        if matching_en_banner:
-            # Update en_id with the ID from matching EN banner
-            jp_banner_copy["en_id"] = matching_en_banner.get("id", 0)
+        sekai_id = jp_banner.get("sekai_id")
+        if sekai_id not in jp_banners_by_sekai_id:
+            jp_banners_by_sekai_id[sekai_id] = []
+        jp_banners_by_sekai_id[sekai_id].append(jp_banner)
+    
+    # Track which en_ids have been assigned to prevent duplicates
+    assigned_en_ids = set()
+    updated_jp_banners = []
+    
+    # Process each group of banners
+    for sekai_id, jp_banner_group in jp_banners_by_sekai_id.items():
+        en_banner_group = en_banners_by_sekai_id.get(sekai_id, [])
+        
+        if not en_banner_group:
+            # No matching EN banners, keep original en_id
+            updated_jp_banners.extend(jp_banner_group)
+        elif len(en_banner_group) == 1:
+            en_id = en_banner_group[0].get("id", 0)
+            if en_id not in assigned_en_ids:
+                assigned_en_ids.add(en_id)
+                for jp_banner in jp_banner_group:
+                    jp_banner_copy = jp_banner.copy()
+                    jp_banner_copy["en_id"] = en_id
+                    updated_jp_banners.append(jp_banner_copy)
+            else:
+                # en_id already assigned, keep original or set to 0
+                for jp_banner in jp_banner_group:
+                    jp_banner_copy = jp_banner.copy()
+                    jp_banner_copy["en_id"] = jp_banner_copy.get("en_id", 0)
+                    updated_jp_banners.append(jp_banner_copy)
         else:
-            # If no matching EN banner found set to 0
-            jp_banner_copy["en_id"] = jp_banner_copy.get("en_id", 0)
-        updated_jp_banners.append(jp_banner_copy)
+            # Multiple EN banners (reruns) - match by timing
+            # Create list of (en_banner, is_assigned) to track assignments
+            en_banner_assignments = [(en_banner, en_banner.get("id", 0) in assigned_en_ids) 
+                                   for en_banner in en_banner_group]
+            
+            for jp_banner in jp_banner_group:
+                jp_banner_copy = jp_banner.copy()
+                jp_start = jp_banner.get("start", 0)
+                
+                best_match = None
+                best_time_diff = float('inf')
+                
+
+                for en_banner, is_assigned in en_banner_assignments:
+                    if not is_assigned:  # Only consider unassigned EN banners
+                        en_start = en_banner.get("start", 0)
+                        if jp_start > 0 and en_start > 0:
+                            # Calculate time difference in days
+                            time_diff_ms = abs(en_start - jp_start)
+                            time_diff_days = time_diff_ms / (1000 * 60 * 60 * 24)
+                            
+                            # Check if it's in the expected rerun range
+                            if 350 <= time_diff_days <= 380:
+                                if time_diff_days < best_time_diff:
+                                    best_time_diff = time_diff_days
+                                    best_match = en_banner
+                
+                # Assign en_id based on best match
+                if best_match:
+                    en_id = best_match.get("id", 0)
+                    assigned_en_ids.add(en_id)
+                    # Mark this EN banner as assigned
+                    for i, (en_banner, is_assigned) in enumerate(en_banner_assignments):
+                        if en_banner == best_match:
+                            en_banner_assignments[i] = (en_banner, True)
+                            break
+                    jp_banner_copy["en_id"] = en_id
+                else:
+                    # use first unassigned EN banner, or set to 0 if all assigned
+                    en_id = 0
+                    for en_banner, is_assigned in en_banner_assignments:
+                        if not is_assigned:
+                            en_id = en_banner.get("id", 0)
+                            assigned_en_ids.add(en_id)
+                            # Mark as assigned
+                            for i, (eb, is_a) in enumerate(en_banner_assignments):
+                                if eb == en_banner:
+                                    en_banner_assignments[i] = (eb, True)
+                                    break
+                            break
+                    jp_banner_copy["en_id"] = en_id
+                
+                updated_jp_banners.append(jp_banner_copy)
+    
     return updated_jp_banners
 
 
