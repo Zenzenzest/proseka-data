@@ -107,6 +107,19 @@ SUB_UNIT_MAPPINGS = {
 }
 
 
+
+
+UNIT_PREMIUM = [
+    "バーチャル・シンガー",
+    "Leo/need",
+    "MORE MORE JUMP！",
+    "Vivid BAD SQUAD",
+    "ワンダーランズ×ショウタイム",
+    "25時、ナイトコードで。"
+]
+
+
+
 EVENT_UNIT_MAPPINGS = {
     "school_refusal": "n25",
     "street": "vbs",

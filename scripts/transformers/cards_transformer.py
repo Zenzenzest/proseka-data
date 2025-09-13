@@ -4,7 +4,7 @@ from typing import Dict, List, Optional
 from dotenv import load_dotenv
 import deepl
 import os
-
+from .common import get_pst_pdt_status
 
 load_dotenv()
 
@@ -78,17 +78,7 @@ def get_birthday_card_name(jp_prefix: str) -> str:
 
 
 
-# CALCULATE RELEASE TIME
-def get_pst_pdt_status():
-    """Determine if current time is PST or PDT"""
-    pacific = pytz.timezone('US/Pacific')
-    current_time = datetime.now(pacific)
-    
-    # check if PDT OR PST
-    if current_time.dst().total_seconds() != 0:
-        return "PDT"
-    else:
-        return "PST"
+
 
 def calculate_en_release_time(jp_release_time_ms: int) -> int:
     """Calculate EN release time based on JP release time and current timezone"""

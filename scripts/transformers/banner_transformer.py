@@ -1,0 +1,443 @@
+import json
+import requests
+import re
+from typing import Dict, List, Optional
+from .mappings import CHARACTERS, UNIT_PREMIUM
+import pytz
+from datetime import datetime, timedelta
+from .common import get_pst_pdt_status
+
+
+
+
+
+# HANDLE en_banners.json
+
+def convert_jp_time_to_en_rerun(jp_start_time: int, jp_end_time: int) -> tuple:
+    """Convert JP time to EN rerun time"""
+    if jp_start_time == 0 or jp_end_time == 0:
+        return 0, 0, 0, 0
+    jp_start_dt = datetime.fromtimestamp(jp_start_time / 1000, tz=pytz.UTC)
+    
+    # Add 1 year 
+    en_start_dt = jp_start_dt.replace(year=jp_start_dt.year + 1)
+    
+    # Get the last day of that month 
+    if en_start_dt.month == 12:
+        next_month = en_start_dt.replace(year=en_start_dt.year + 1, month=1, day=1)
+    else:
+        next_month = en_start_dt.replace(month=en_start_dt.month + 1, day=1)
+    
+    #  12:00 PM GMT+8
+    last_day = next_month - timedelta(days=1)
+    gmt8 = pytz.timezone('Asia/Shanghai')  # GMT+8
+    
+    # Create completely naive datetime (no timezone info)
+    naive_dt = datetime(
+        year=last_day.year,
+        month=last_day.month,
+        day=last_day.day,
+        hour=12,
+        minute=0,
+        second=0,
+        microsecond=0
+    )
+    en_end_dt = gmt8.localize(naive_dt)
+    # Convert to UTC 
+    en_end_dt = en_end_dt.astimezone(pytz.UTC)
+    en_start_dt = en_end_dt
+    # erun array calculations
+    #add 1 year and substract 5 days for start date
+    rerun_start_dt = jp_start_dt.replace(year=jp_start_dt.year + 1) - timedelta(days=5)
+    rerun_start_ms = int(rerun_start_dt.timestamp() * 1000)
+    
+    # add 1 year and 5 days for end date
+    jp_end_dt = datetime.fromtimestamp(jp_end_time / 1000, tz=pytz.UTC)
+    rerun_end_dt = jp_end_dt.replace(year=jp_end_dt.year + 1) + timedelta(days=5)
+    rerun_end_ms = int(rerun_end_dt.timestamp() * 1000)
+    
+    # Convert back to milliseconds
+    en_start_ms = int(en_start_dt.timestamp() * 1000)
+    en_end_ms = int(en_end_dt.timestamp() * 1000)
+    
+    return en_start_ms, en_end_ms, rerun_start_ms, rerun_end_ms
+
+
+def convert_jp_time_to_en_normal(jp_start_time: int, jp_end_time: int) -> tuple:
+    """Convert JP time to EN normal time (add 1 year + timezone hours)"""
+    if jp_start_time == 0 or jp_end_time == 0:
+        return 0, 0
+    
+    # convert to datetime
+    jp_start_dt = datetime.fromtimestamp(jp_start_time / 1000, tz=pytz.UTC)
+    jp_end_dt = datetime.fromtimestamp(jp_end_time / 1000, tz=pytz.UTC)
+    
+    # Add 1 year
+    en_start_dt = jp_start_dt.replace(year=jp_start_dt.year + 1)
+    en_end_dt = jp_end_dt.replace(year=jp_end_dt.year + 1)
+    
+    # additional hours based on current timezone
+    timezone = get_pst_pdt_status()
+    additional_hours = 16 if timezone == "PDT" else 17
+    en_start_dt = en_start_dt + timedelta(hours=additional_hours)
+    en_end_dt = en_end_dt + timedelta(hours=additional_hours)
+    # convert back to milliseconds
+    en_start_ms = int(en_start_dt.timestamp() * 1000)
+    en_end_ms = int(en_end_dt.timestamp() * 1000)
+    return en_start_ms, en_end_ms
+
+
+
+def create_en_banner_from_jp(jp_banner: Dict, existing_en_banners: List[Dict], jp_banners: List[Dict]) -> Dict:
+    jp_banner_copy = jp_banner.copy()
+    en_banner = {
+        "id": get_next_id(existing_en_banners),
+        "name": jp_banner_copy.get("name", ""),
+        "cards": jp_banner_copy.get("cards", []),
+        "characters": jp_banner_copy.get("characters", []),
+        "keywords": jp_banner_copy.get("keywords", []),
+        "sekai_id": jp_banner_copy.get("sekai_id"),
+        "gachaDetails": jp_banner_copy.get("gachaDetails", []),
+        "banner_type": jp_banner_copy.get("banner_type", ""),
+        "start": 0,
+        "end": 0
+    }
+    
+    # special handling for Birthday banners
+    if jp_banner_copy.get("banner_type") == "Birthday":
+        # find previous birthday banner name and increment year
+        cards = jp_banner_copy.get("cards", [])
+        previous_name = find_previous_birthday_banner_name(cards, existing_en_banners)
+        if previous_name:
+            en_banner["name"] = previous_name
+        
+        # handle start/end times for birthday banners (add 1 year + timezone hours)
+        jp_start = jp_banner_copy.get("start", 0)
+        jp_end = jp_banner_copy.get("end", 0)
+        
+        en_start, en_end = convert_jp_time_to_en_normal(jp_start, jp_end)
+        en_banner["start"] = en_start
+        en_banner["end"] = en_end
+    
+    # special handling for Limited Event Rerun
+    elif jp_banner_copy.get("banner_type") == "Limited Event Rerun":
+        jp_start = jp_banner_copy.get("start", 0)
+        jp_end = jp_banner_copy.get("end", 0)
+        en_start, en_end, rerun_start, rerun_end = convert_jp_time_to_en_rerun(jp_start, jp_end)
+        en_banner["start"] = en_start
+        en_banner["end"] = en_end
+        
+        # special rerun fields (only for rerun banners)
+        en_banner["type"] = "rerun_estimation"
+        en_banner["rerun"] = [rerun_start, rerun_end]
+        
+        # update name
+        original_name = find_original_limited_event_name(
+            jp_banner_copy.get("cards", []), 
+            existing_en_banners, 
+            jp_banners
+        )
+        if original_name:
+            en_banner["name"] = original_name
+    else:
+        # For non-rerun banners, convert times with timezone adjustment
+        jp_start = jp_banner_copy.get("start", 0)
+        jp_end = jp_banner_copy.get("end", 0)
+        en_start, en_end = convert_jp_time_to_en_normal(jp_start, jp_end)
+        
+        # Update time fields
+        en_banner["start"] = en_start
+        en_banner["end"] = en_end
+    
+    return en_banner
+
+
+def update_jp_banners_with_en_ids(jp_banners: List[Dict], en_banners: List[Dict]) -> List[Dict]:
+    # lookup dictionary for EN banners by sekai_id
+    en_banner_lookup = {banner.get("sekai_id"): banner for banner in en_banners}
+   
+    updated_jp_banners = []
+    for jp_banner in jp_banners:
+        jp_banner_copy = jp_banner.copy()
+        # sekai_id to match with EN banners
+        sekai_id = jp_banner_copy.get("sekai_id")
+        # Find matching EN banner
+        matching_en_banner = en_banner_lookup.get(sekai_id)
+        if matching_en_banner:
+            # Update en_id with the ID from matching EN banner
+            jp_banner_copy["en_id"] = matching_en_banner.get("id", 0)
+        else:
+            # If no matching EN banner found set to 0
+            jp_banner_copy["en_id"] = jp_banner_copy.get("en_id", 0)
+        updated_jp_banners.append(jp_banner_copy)
+    return updated_jp_banners
+
+
+def find_original_limited_event_name(cards: List[int], existing_en_banners: List[Dict], jp_banners: List[Dict]) -> str:
+
+    if not cards:
+        return ""
+    first_card_id = cards[0]
+    for banner in existing_en_banners:
+        if first_card_id in banner.get("cards", []):
+            if banner.get("banner_type") == "Limited Event":
+                original_name = banner.get("name", "")
+                return f"[Rerun] {original_name}"
+    for banner in jp_banners:
+        if first_card_id in banner.get("cards", []):
+            if banner.get("banner_type") == "Limited Event":
+                original_name = banner.get("name", "")
+                return f"[Rerun] {original_name}"
+    
+    return ""
+
+
+def find_previous_birthday_banner_name(cards: List[int], existing_en_banners: List[Dict]) -> str:
+    if not cards or len(cards) < 2:
+        return ""
+    
+    #cards except the first one (latest card)
+    previous_cards = cards[1:]
+    if not previous_cards:
+        return ""
+    
+    # Look for matching birthday banner in existing EN banners
+    for banner in existing_en_banners:
+        if banner.get("banner_type") == "Birthday":
+            banner_cards = banner.get("cards", [])
+    
+            if set(previous_cards).issubset(set(banner_cards)) or set(previous_cards) == set(banner_cards):
+                previous_name = banner.get("name", "")
+                if previous_name:
+                    # Look for 4-digit year pattern and increment it
+                    import re
+                    year_pattern = r'(\d{4})'
+                    match = re.search(year_pattern, previous_name)
+                    if match:
+                        current_year = int(match.group(1))
+                        next_year = current_year + 1
+                        # Replace the year in the name
+                        return re.sub(year_pattern, str(next_year), previous_name)
+                    return previous_name
+    
+    return ""
+
+
+
+
+
+def fetch_json_from_url(url: str) -> List[Dict]:
+    """Fetch JSON data from URL"""
+    response = requests.get(url)
+    response.raise_for_status()
+    return response.json()
+
+def extract_rarity_4_card_ids(gacha_details: List[Dict], cards_data: List[Dict], banner_type: str) -> List[int]:
+    # return empty array if bday
+    if banner_type == "Birthday":
+        return []
+    rarity_4_card_ids = []
+    card_lookup = {card.get("id"): card for card in cards_data}
+    
+    # process each ganner detail
+    for detail in gacha_details:
+        card_id = detail.get("cardId")
+        if card_id:
+            # Look up the card in cards.json
+            card = card_lookup.get(card_id)
+            if card:
+   
+                if card.get("rarity") == 4:
+                    rarity_4_card_ids.append(card_id)
+    
+    return rarity_4_card_ids
+
+
+def get_character_ids_from_cards(card_ids: List[int], cards_data: List[Dict], characters_list: List[str]) -> List[int]:
+    character_names = set()  #  set to prevent duplicates
+    card_lookup = {card.get("id"): card for card in cards_data}
+    
+    # unique character names from cards
+    for card_id in card_ids:
+        card = card_lookup.get(card_id)
+        if card:
+            character_name = card.get("character")
+            if character_name:
+                character_names.add(character_name)
+    
+    # Convert character names to IDs
+    character_ids = []
+    for character_name in character_names:
+        try:
+      
+            char_id = characters_list.index(character_name) + 1
+            character_ids.append(char_id)
+        except ValueError:
+    
+            continue
+    return sorted(character_ids)
+
+def get_next_id(existing_banners: List[Dict]) -> int:
+    if not existing_banners:
+        return 1
+    return max(banner.get("id", 0) for banner in existing_banners) + 1
+
+def extract_card_ids(gacha_pickups: List[Dict]) -> List[int]:
+    return [pickup.get("cardId", 0) for pickup in gacha_pickups if pickup.get("cardId")]
+
+
+def extract_japanese_name(name: str) -> Optional[str]:
+    match = re.search(r'(?:\[復刻\])?\[([^\]]+)\]', name)
+    return match.group(1) if match else None
+
+def is_birthday_banner(name: str) -> bool:
+    return "HAPPY BIRTHDAY" in name or "HAPPY ANNIVERSARY" in name
+
+def group_birthday_banners(gachas: List[Dict]) -> List[Dict]:
+    birthday_gachas = [g for g in gachas if g.get("id", 0) >= 800 and is_birthday_banner(g.get("name", ""))]
+    
+    # Group by Japanese name
+    grouped = {}
+    for gacha in birthday_gachas:
+        jp_name = extract_japanese_name(gacha.get("name", ""))
+        if jp_name:
+            if jp_name not in grouped:
+                grouped[jp_name] = []
+            grouped[jp_name].append(gacha)
+    
+    # For each group, keep only the first banner but combine all cards
+    result = []
+    processed_ids = set()
+    
+    for jp_name, banners in grouped.items():
+        if banners:
+            # sort by ID to ensure we get the first one
+            banners.sort(key=lambda x: x.get("id", 0))
+            first_banner = banners[0].copy()
+            
+            # Collect all card IDs from all banners in this group
+            all_cards = []
+            for banner in banners:
+                banner_id = banner.get("id")
+                if banner_id:
+                    processed_ids.add(banner_id)
+                card_ids = extract_card_ids(banner.get("gachaPickups", []))
+                all_cards.extend(card_ids)
+            
+            # combined card IDs
+            first_banner["gachaPickups"] = [{"cardId": card_id} for card_id in all_cards]
+            result.append(first_banner)
+   
+    for gacha in gachas:
+        gacha_id = gacha.get("id", 0)
+        if gacha_id >= 800 and gacha_id not in processed_ids:
+            result.append(gacha)
+    return result
+
+
+
+def determine_banner_type(name: str, cards: List[int], cards_data: List[Dict]) -> str:
+    # Name-based conditions 
+    if "HAPPY BIRTHDAY" in name or "HAPPY ANNIVERSARY" in name:
+        return "Birthday"
+    elif "復刻" in name:
+        return "Limited Event Rerun"
+    elif "セレクトリスト" in name:
+        return "Your Pick"
+    elif "メモリアルセレクト" in name:
+        return "Memorial Select"
+    elif "プレミアムプレゼント" in name:
+   
+        for unit in UNIT_PREMIUM:
+            if unit in name:
+                return "Unit Premium Gift"
+        return "Premium Gift"
+    
+    # Card-based conditions
+    if cards and len(cards) >= 3 and cards_data:
+        # Get first 3 cards and check their types
+        first_three_card_ids = cards[:3]
+        first_three_cards = []
+        
+        # Find card data for first 3 cards
+        card_lookup = {card.get("id"): card for card in cards_data}
+        for card_id in first_three_card_ids:
+            card_data = card_lookup.get(card_id)
+            if card_data:
+                first_three_cards.append(card_data)
+
+        if len(first_three_cards) == 3:
+            card_types = [card.get("card_type", "") for card in first_three_cards]
+            
+            # All must be same type
+            if len(set(card_types)) == 1:  
+                first_type = card_types[0]
+                if first_type == "limited":
+                    return "Limited Event"
+                elif first_type == "permanent":
+                    return "Event"
+                elif first_type == "unit_limited":
+                    return "Unit Limited Event"
+                elif first_type == "bloom_fes":
+                    return "bloom_fes"
+    
+    # Default banner type
+    return "Event"
+
+
+
+
+def transform_jp_banners(jp_gachas: List[Dict], existing_banners: List[Dict], cards_data: List[Dict]) -> List[Dict]:
+    """Transform JP gachas to banner format"""
+    result = []
+    
+
+    existing_banner_lookup = {banner.get("sekai_id"): banner for banner in existing_banners}
+    
+    # group birthday banners
+    processed_gachas = group_birthday_banners(jp_gachas)
+    
+    # Filter gachas to only process those with ID 800 and above
+    gachas_to_process = [gacha for gacha in processed_gachas if gacha.get("id", 0) >= 800]
+    
+    # Process each
+    for gacha in gachas_to_process:
+        sekai_id = gacha.get("id")
+        
+        # Skip if this banner already exists in my jp_banners
+        if sekai_id in existing_banner_lookup:
+            continue
+            
+        # Extract data from source
+        name = gacha.get("name", "")
+        start_time = gacha.get("startAt", 0)
+        end_time = gacha.get("endAt", 0)
+        gacha_pickups = gacha.get("gachaPickups", [])
+        
+        # Transform 
+        card_ids = extract_card_ids(gacha_pickups)
+        banner_type = determine_banner_type(name, card_ids, cards_data)
+        
+        # Get next auto-increment ID
+        banner_id = get_next_id(existing_banners + result)
+
+      # extract gachaDetails card IDs (only rarity 4)
+        gacha_details_card_ids = extract_rarity_4_card_ids(gacha.get("gachaDetails", []), cards_data, banner_type)
+
+        # Create banner object
+        banner = {
+            "id": banner_id,
+            "name": name,
+            "start": start_time,
+            "end": end_time,
+            "cards": card_ids,
+            "en_id": 0,  
+            "banner_type": banner_type,
+            "characters": get_character_ids_from_cards(card_ids, cards_data, CHARACTERS),
+            "keywords": [],   
+            "sekai_id": sekai_id,
+            "gachaDetails": gacha_details_card_ids
+}
+        result.append(banner)
+    
+    return result
