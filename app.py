@@ -1,6 +1,7 @@
 import subprocess
 import sys
 from scripts.format_json import format_all_json_files
+from scripts.update_event_id import update_banners_with_event_ids
 
 def run_script(script_name):
     """Run a Python script and check for errors"""
@@ -20,7 +21,6 @@ def main():
         'scripts/update_cards.py',
         'scripts/update_banners.py', 
         'scripts/update_events.py',
-        'scripts/update_event_id.py'
     ]
     
     success = True
@@ -29,7 +29,11 @@ def main():
             success = False
     
     if success:
-
+        # Add event_id to banners
+        print("Adding event_id to banners...")
+        update_banners_with_event_ids()
+        
+        # Format all JSON files
         print("Formatting JSON files...")
         format_all_json_files()
         print("All updates completed successfully!")
