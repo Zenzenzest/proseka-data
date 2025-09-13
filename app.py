@@ -19,7 +19,8 @@ def main():
     scripts = [
         'scripts/update_cards.py',
         'scripts/update_banners.py', 
-        'scripts/update_events.py'
+        'scripts/update_events.py',
+        'scripts/update_event_id.py'
     ]
     
     success = True
