@@ -458,7 +458,6 @@ def determine_banner_type(name: str, cards: List[int], cards_data: List[Dict]) -
 def transform_jp_banners(jp_gachas: List[Dict], existing_banners: List[Dict], cards_data: List[Dict]) -> List[Dict]:
     """Transform JP gachas to banner format"""
     result = []
-    
 
     existing_banner_lookup = {banner.get("sekai_id"): banner for banner in existing_banners}
     
