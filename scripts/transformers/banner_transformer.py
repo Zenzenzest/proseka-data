@@ -10,7 +10,6 @@ from .common import get_pst_pdt_status
 
 
 
-
 # HANDLE en_banners.json
 
 def convert_jp_time_to_en_rerun(jp_start_time: int, jp_end_time: int) -> tuple:
@@ -225,6 +224,78 @@ def find_previous_birthday_banner_name(cards: List[int], existing_en_banners: Li
 
 
 
+# UPDATE FROM EN BANNERS
+def normalize_rerun_name(name: str) -> str:
+    """Normalize rerun names by removing [Rerun] and [It's Back] prefixes"""
+    if name.startswith("[Rerun] "):
+        return name[8:]  
+    elif name.startswith("[It's Back] "):
+        return name[12:] 
+    return name
+
+
+def update_en_banners_from_en_source(en_gachas: List[Dict], existing_en_banners: List[Dict]) -> List[Dict]:
+    """Update EN banners from EN source data"""
+
+    en_banner_lookup = {banner.get("sekai_id"): banner for banner in existing_en_banners}
+    
+    # only process ID above 570
+    gachas_to_process = [gacha for gacha in en_gachas if gacha.get("id", 0) > 570]
+    
+    updated_count = 0
+    updated_banner_ids = [] 
+    result_banners = existing_en_banners.copy() 
+    
+  
+    for gacha in gachas_to_process:
+        sekai_id = gacha.get("id")
+        
+        # Find matching EN banner
+        if sekai_id in en_banner_lookup:
+     
+            for i, banner in enumerate(result_banners):
+                if banner.get("sekai_id") == sekai_id:
+                    existing_banner = banner.copy()
+                    original_banner = existing_banner.copy()
+                    
+                    # update fields if different
+                    en_name = gacha.get("name", "")
+                    en_start = gacha.get("startAt", 0)
+                    en_end = gacha.get("endAt", 0)
+                    
+    
+                    existing_name = existing_banner.get("name", "")
+                    if normalize_rerun_name(existing_name) != normalize_rerun_name(en_name):
+                        result_banners[i]["name"] = en_name
+                        
+                    if result_banners[i].get("start") != en_start:
+                        result_banners[i]["start"] = en_start
+                        
+                    if result_banners[i].get("end") != en_end:
+                        result_banners[i]["end"] = en_end
+                    
+                    if result_banners[i] != original_banner:
+                        updated_count += 1
+                        # Get the banner's own ID (not sekai_id)
+                        banner_id = result_banners[i].get("id", "Unknown")
+                        updated_banner_ids.append(banner_id)
+                    break
+    
+    if updated_count > 0:
+        print(f"Updated {updated_count} EN banners from EN source")
+        print(f"Updated banner IDs: {updated_banner_ids}")
+    
+    return result_banners
+
+
+
+
+
+
+
+
+
+
 
 def fetch_json_from_url(url: str) -> List[Dict]:
     """Fetch JSON data from URL"""
@@ -335,7 +406,6 @@ def group_birthday_banners(gachas: List[Dict]) -> List[Dict]:
     return result
 
 
-
 def determine_banner_type(name: str, cards: List[int], cards_data: List[Dict]) -> str:
     # Name-based conditions 
     if "HAPPY BIRTHDAY" in name or "HAPPY ANNIVERSARY" in name:
@@ -383,8 +453,6 @@ def determine_banner_type(name: str, cards: List[int], cards_data: List[Dict]) -
     
     # Default banner type
     return "Event"
-
-
 
 
 def transform_jp_banners(jp_gachas: List[Dict], existing_banners: List[Dict], cards_data: List[Dict]) -> List[Dict]:
