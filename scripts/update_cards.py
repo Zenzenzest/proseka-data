@@ -1,9 +1,13 @@
 import json
 import os
+import tempfile
+import shutil
 from transformers.cards_transformer import fetch_json_from_url, update_existing_cards, merge_card_data
 
+from common_update import files_are_different
+
 def main():
-    # URLs for the source JSON files (UPDATE THESE WITH YOUR ACTUAL URLs)
+  
     jp_cards_url = "https://sekai-world.github.io/sekai-master-db-diff/cards.json"
     en_cards_url = "https://sekai-world.github.io/sekai-master-db-en-diff/cards.json"
     
@@ -11,7 +15,7 @@ def main():
     jp_cards = fetch_json_from_url(jp_cards_url)
     en_cards = fetch_json_from_url(en_cards_url)
     
-    # Check if cards.json already exists
+    # Check cards.json 
     if os.path.exists('cards.json'):
         with open('cards.json', 'r', encoding='utf-8') as f:
             existing_cards = json.load(f)
@@ -22,11 +26,19 @@ def main():
         # Create new cards.json (first run)
         processed_cards = merge_card_data(jp_cards, en_cards)
     
-    # Save to your cards.json
-    with open('cards.json', 'w', encoding='utf-8') as f:
-        json.dump(processed_cards, f, ensure_ascii=False, indent=2)
+
+    # Create temporary file 
+    with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', delete=False, suffix='.json') as tmp_cards:
+        json.dump(processed_cards, tmp_cards, ensure_ascii=False, indent=2)
+        tmp_cards_path = tmp_cards.name
     
-    print(f"Processed {len(processed_cards)} cards")
+    # Compare and update if different
+    if files_are_different('cards.json', tmp_cards_path):
+        shutil.move(tmp_cards_path, 'cards.json')
+        print(f"Updated cards.json with {len(processed_cards)} cards")
+    else:
+        os.unlink(tmp_cards_path) 
+        print("No changes to cards.json")
 
 if __name__ == "__main__":
     main()

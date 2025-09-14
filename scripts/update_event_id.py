@@ -1,6 +1,10 @@
 import json
-from typing import Dict, List
 import os
+import tempfile
+import shutil
+from typing import Dict, List
+from .common_update import files_are_different
+
 
 def add_event_ids_to_banners(jp_banners: List[Dict], en_banners: List[Dict], jp_events: List[Dict]) -> tuple:
 
@@ -16,13 +20,12 @@ def add_event_ids_to_banners(jp_banners: List[Dict], en_banners: List[Dict], jp_
         event_id = event.get("id")
         if event_id and event_id not in existing_event_ids:
             new_events.append(event)
-    print(new_events)
     print(f"Found {len(new_events)} new events to process")
     
-    # lookup for events by ID
+    # Create lookup for events by ID
     event_lookup = {event.get("id"): event for event in new_events}
     
-    # add event_id to banners
+    # Add event_id to banners
     def process_banners(banners: List[Dict], banner_type: str) -> List[Dict]:
         updated_count = 0
         processed_banners = []
@@ -39,7 +42,7 @@ def add_event_ids_to_banners(jp_banners: List[Dict], en_banners: List[Dict], jp_
                 for event_id, event in event_lookup.items():
                     event_cards = set(event.get("cards", []))
                     
-                    # Cif at least 3 cards match
+                    # Check if at least 3 cards match
                     if len(banner_cards.intersection(event_cards)) >= 3:
                         processed_banner["event_id"] = event_id
                         updated_count += 1
@@ -82,18 +85,47 @@ def update_banners_with_event_ids():
         # Add event_ids 
         updated_jp_banners, updated_en_banners = add_event_ids_to_banners(jp_banners, en_banners, jp_events)
         
-  
-        if updated_jp_banners != jp_banners:
-            with open('jp_banners.json', 'w', encoding='utf-8') as f:
-                json.dump(updated_jp_banners, f, ensure_ascii=False, indent=2)
-            print("Updated jp_banners.json with event_id")
+        # Use temporary files to avoid unnecessary writes
+        files_updated = False
         
+        # Handle JP banners
+        if updated_jp_banners != jp_banners:
+            # Create temporary file for JP banners
+            with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', delete=False, suffix='.json') as tmp_jp:
+                json.dump(updated_jp_banners, tmp_jp, ensure_ascii=False, indent=2)
+                tmp_jp_path = tmp_jp.name
+            
+            # Compare and update if different
+            if files_are_different('jp_banners.json', tmp_jp_path):
+                shutil.move(tmp_jp_path, 'jp_banners.json')
+                print("Updated jp_banners.json with event_id")
+                files_updated = True
+            else:
+                os.unlink(tmp_jp_path)  
+                print("No changes to jp_banners.json")
+        else:
+            print("No JP banners need event_id updates")
+        
+        # Handle EN banners
         if updated_en_banners != en_banners:
-            with open('en_banners.json', 'w', encoding='utf-8') as f:
-                json.dump(updated_en_banners, f, ensure_ascii=False, indent=2)
-            print("Updated en_banners.json with event_id")
+            # Create temporary file for EN banners
+            with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', delete=False, suffix='.json') as tmp_en:
+                json.dump(updated_en_banners, tmp_en, ensure_ascii=False, indent=2)
+                tmp_en_path = tmp_en.name
+            
+            # Compare and update if different
+            if files_are_different('en_banners.json', tmp_en_path):
+                shutil.move(tmp_en_path, 'en_banners.json')
+                print("Updated en_banners.json with event_id")
+                files_updated = True
+            else:
+                os.unlink(tmp_en_path) 
+                print("No changes to en_banners.json")
+        else:
+            print("No EN banners need event_id updates")
+            
+        if not files_updated:
+            print("No banner files were modified")
             
     except Exception as e:
         print(f"Error updating banners with event_id: {e}")
-
-

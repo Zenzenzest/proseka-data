@@ -1,56 +1,51 @@
 import json
 import os
-from transformers.event_transformer import fetch_json_from_url, transform_jp_events, create_en_event_from_jp, update_en_events_from_en_source
+import tempfile
+import shutil
+from transformers.cards_transformer import fetch_json_from_url, update_existing_cards, merge_card_data
+from common_update import files_are_different
+
 
 def main():
-
-    jp_events_url = "https://sekai-world.github.io/sekai-master-db-diff/events.json"
-    en_events_url = "https://sekai-world.github.io/sekai-master-db-en-diff/events.json"
-    event_cards_url = "https://sekai-world.github.io/sekai-master-db-diff/eventCards.json"
+    # sources
+    jp_cards_url = "https://sekai-world.github.io/sekai-master-db-diff/cards.json"
+    en_cards_url = "https://sekai-world.github.io/sekai-master-db-en-diff/cards.json"
     
+  
+    jp_cards = fetch_json_from_url(jp_cards_url)
+    en_cards = fetch_json_from_url(en_cards_url)
+    
+
+    if os.path.exists('cards.json'):
+        with open('cards.json', 'r', encoding='utf-8') as f:
+            existing_cards = json.load(f)
+        
+        # Update existing cards with new data
+        processed_cards = update_existing_cards(existing_cards, jp_cards, en_cards)
+    else:
+        # Create new cards.json (first run)
+        processed_cards = merge_card_data(jp_cards, en_cards)
+    
+
+    if not os.path.exists('cards.json'):
+      
+        with open('cards.json', 'w', encoding='utf-8') as f:
+            json.dump(processed_cards, f, ensure_ascii=False, indent=2)
+        print(f"Created cards.json with {len(processed_cards)} cards")
+    else:
+
  
-    jp_events_data = fetch_json_from_url(jp_events_url)
-    en_events_data = fetch_json_from_url(en_events_url)
-    event_cards_data = fetch_json_from_url(event_cards_url)
-    
- 
-    existing_jp_events = []
-    if os.path.exists('jp_events.json'):
-        with open('jp_events.json', 'r', encoding='utf-8') as f:
-            existing_jp_events = json.load(f)
-    
-    # Transform
-    new_jp_events = transform_jp_events(jp_events_data, existing_jp_events, event_cards_data)
-    
-    # Merge 
-    all_jp_events = existing_jp_events + new_jp_events
-    with open('jp_events.json', 'w', encoding='utf-8') as f:
-        json.dump(all_jp_events, f, ensure_ascii=False, indent=2)
-    
-
-    existing_en_events = []
-    if os.path.exists('en_events.json'):
-        with open('en_events.json', 'r', encoding='utf-8') as f:
-            existing_en_events = json.load(f)
-    
-    # create EN events for new JP events
-    new_en_events = []
-    for jp_event in new_jp_events:
-        en_event = create_en_event_from_jp(jp_event, event_cards_data)
-        new_en_events.append(en_event)
-    
-    # Merge new EN events
-    all_en_events = existing_en_events + new_en_events
-    
-    # Update EN events from EN source
-    updated_en_events = update_en_events_from_en_source(en_events_data, all_en_events)
-    
-
-    with open('en_events.json', 'w', encoding='utf-8') as f:
-        json.dump(updated_en_events, f, ensure_ascii=False, indent=2)
-    
-    print(f"Processed {len(new_jp_events)} new JP events")
-    print(f"Processed {len(new_en_events)} new EN events")
+        with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', delete=False, suffix='.json') as tmp_cards:
+            json.dump(processed_cards, tmp_cards, ensure_ascii=False, indent=2)
+            tmp_cards_path = tmp_cards.name
+        
+        # Compare and update if different
+        if files_are_different('cards.json', tmp_cards_path):
+            shutil.move(tmp_cards_path, 'cards.json')
+            print(f"Updated cards.json with {len(processed_cards)} cards")
+        else:
+            os.unlink(tmp_cards_path) 
+            print("No changes to cards.json")
 
 if __name__ == "__main__":
     main()
