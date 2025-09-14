@@ -100,7 +100,6 @@ CARD_UNIT_MAPPINGS = {
 SUB_UNIT_MAPPINGS = {
     "school_refusal": "Nightcord at 25:00",
     "street": "Vivid BAD SQUAD",
-    "none": "mixed",
     "light_sound": "Leo/Need",
     "theme_park": "Wonderlands x Showtime",
     "idol": "MORE MORE JUMP!"
