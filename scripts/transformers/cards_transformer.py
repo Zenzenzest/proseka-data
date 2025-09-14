@@ -4,7 +4,7 @@ from typing import Dict, List, Optional
 from dotenv import load_dotenv
 import deepl
 import os
-from .common import get_pst_pdt_status
+from .common_transform import get_pst_pdt_status
 
 load_dotenv()
 

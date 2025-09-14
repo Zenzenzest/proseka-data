@@ -16,7 +16,7 @@ def add_event_ids_to_banners(jp_banners: List[Dict], en_banners: List[Dict], jp_
         event_id = event.get("id")
         if event_id and event_id not in existing_event_ids:
             new_events.append(event)
-    
+    print(new_events)
     print(f"Found {len(new_events)} new events to process")
     
     # lookup for events by ID

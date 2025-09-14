@@ -1,3 +1,4 @@
+import os
 import json
 import requests
 import re
@@ -5,7 +6,7 @@ from typing import Dict, List, Optional
 from .mappings import CHARACTERS, UNIT_PREMIUM
 import pytz
 from datetime import datetime, timedelta
-from .common import get_pst_pdt_status
+from .common_transform import get_pst_pdt_status, fetch_json_from_url
 
 
 
@@ -315,36 +316,58 @@ def normalize_rerun_name(name: str) -> str:
     return name
 
 
-def update_en_banners_from_en_source(en_gachas: List[Dict], existing_en_banners: List[Dict]) -> List[Dict]:
-    """Update EN banners from EN source data"""
-
+def update_en_banners_from_en_source(en_gachas: List[Dict], existing_en_banners: List[Dict], en_gachas_changes: List[Dict] = None) -> List[Dict]:
+    """Update EN banners from EN source data - now supports adding new entries"""
+    cards_data = []
+    if os.path.exists('cards.json'):
+        with open('cards.json', 'r', encoding='utf-8') as f:
+            cards_data = json.load(f)
     en_banner_lookup = {banner.get("sekai_id"): banner for banner in existing_en_banners}
     
-    # only process ID above 570
-    gachas_to_process = [gacha for gacha in en_gachas if gacha.get("id", 0) > 570]
+    # Determine which gachas to process
+    if en_gachas_changes:
+        # Process only the changed gachas (incremental update)
+        gachas_to_process = [gacha for gacha in en_gachas_changes if gacha.get("id", 0) > 570]
+        print(f"Processing {len(gachas_to_process)} changed EN gachas")
+    else:
+        # Fallback to original behavior - process all gachas above 570
+        gachas_to_process = [gacha for gacha in en_gachas if gacha.get("id", 0) > 570]
+        print(f"Processing all EN gachas above ID 570")
     
     updated_count = 0
-    updated_banner_ids = [] 
-    result_banners = existing_en_banners.copy() 
+    added_count = 0
+    updated_banner_ids = []
+    added_banner_ids = []
+    result_banners = existing_en_banners.copy()
     
-  
+    # Track which sekai_ids are processed to avoid duplicates
+    processed_sekai_ids = set()
+    
+    # Process each gacha
     for gacha in gachas_to_process:
+        if "3★" in gacha.get("name"):
+            continue
         sekai_id = gacha.get("id")
         
-        # Find matching EN banner
+        # Skip if already processed (avoid duplicates)
+        if sekai_id in processed_sekai_ids:
+            continue
+        processed_sekai_ids.add(sekai_id)
+
+        
+        # Check if this banner already exists
         if sekai_id in en_banner_lookup:
-     
+            # UPDATE existing banner
             for i, banner in enumerate(result_banners):
                 if banner.get("sekai_id") == sekai_id:
                     existing_banner = banner.copy()
                     original_banner = existing_banner.copy()
                     
-                    # update fields if different
+                    # Update fields if different
                     en_name = gacha.get("name", "")
                     en_start = gacha.get("startAt", 0)
                     en_end = gacha.get("endAt", 0)
                     
-    
                     existing_name = existing_banner.get("name", "")
                     if normalize_rerun_name(existing_name) != normalize_rerun_name(en_name):
                         result_banners[i]["name"] = en_name
@@ -355,16 +378,53 @@ def update_en_banners_from_en_source(en_gachas: List[Dict], existing_en_banners:
                     if result_banners[i].get("end") != en_end:
                         result_banners[i]["end"] = en_end
                     
+                    # Check if banner was actually modified
                     if result_banners[i] != original_banner:
                         updated_count += 1
-                        # Get the banner's own ID (not sekai_id)
                         banner_id = result_banners[i].get("id", "Unknown")
                         updated_banner_ids.append(banner_id)
                     break
+        else:
+            # ADD new banner 
+            name = gacha.get("name", "")
+
+            gacha_pickups = gacha.get("gachaPickups", [])
+            card_ids = extract_card_ids(gacha_pickups)
+            banner_type = determine_banner_type(name, card_ids, cards_data)
+            gacha_details_card_ids = extract_rarity_4_card_ids(gacha.get("gachaDetails", []), cards_data, banner_type)
+            
+            new_banner = {
+                "id": get_next_id(result_banners),
+                "sekai_id": sekai_id,
+                "name": name,
+                "characters": get_character_ids_from_cards(card_ids, cards_data, CHARACTERS),
+                "start": gacha.get("startAt", 0),
+                "end": gacha.get("endAt", 0),
+                "cards": card_ids, 
+                "keywords": [],
+                  "gachaDetails": gacha_details_card_ids,
+                "banner_type": banner_type,
+            
+
+            }
+            
+            result_banners.append(new_banner)
+            added_count += 1
+            added_banner_ids.append(new_banner["id"])
     
-    if updated_count > 0:
-        print(f"Updated {updated_count} EN banners from EN source")
-        print(f"Updated banner IDs: {updated_banner_ids}")
+    # Print summary
+    if updated_count > 0 or added_count > 0:
+        summary = []
+        if updated_count > 0:
+            summary.append(f"Updated {updated_count} EN banners")
+        if added_count > 0:
+            summary.append(f"Added {added_count} new EN banners")
+        print(", ".join(summary))
+        
+        if updated_banner_ids:
+            print(f"Updated banner IDs: {updated_banner_ids}")
+        if added_banner_ids:
+            print(f"Added banner IDs: {added_banner_ids}")
     
     return result_banners
 
@@ -377,12 +437,6 @@ def update_en_banners_from_en_source(en_gachas: List[Dict], existing_en_banners:
 
 
 
-
-def fetch_json_from_url(url: str) -> List[Dict]:
-    """Fetch JSON data from URL"""
-    response = requests.get(url)
-    response.raise_for_status()
-    return response.json()
 
 def extract_rarity_4_card_ids(gacha_details: List[Dict], cards_data: List[Dict], banner_type: str) -> List[int]:
     # return empty array if bday
@@ -499,7 +553,7 @@ def determine_banner_type(name: str, cards: List[int], cards_data: List[Dict]) -
         return "Your Pick"
     elif "メモリアルセレクト" in name:
         return "Memorial Select"
-    elif "プレミアムプレゼント" in name:
+    elif "プレミアムプレゼント" in name or "Premium Gift" in name:
    
         for unit in UNIT_PREMIUM:
             if unit in name:

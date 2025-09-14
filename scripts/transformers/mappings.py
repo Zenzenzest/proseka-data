@@ -115,7 +115,11 @@ UNIT_PREMIUM = [
     "MORE MORE JUMP！",
     "Vivid BAD SQUAD",
     "ワンダーランズ×ショウタイム",
-    "25時、ナイトコードで。"
+    "25時、ナイトコードで。",
+    "MORE MORE JUMP!",
+    "Wonderlands×Showtime",
+    "VIRTUAL SINGER",
+    "Nightcord at 25:00"
 ]
 
 

@@ -1,17 +1,30 @@
 import json
 import os
 from transformers.banner_transformer import fetch_json_from_url, transform_jp_banners,create_en_banner_from_jp, update_jp_banners_with_en_ids, update_en_banners_from_en_source
-
+from common_update import load_json, get_new_entries,save_json
 def main():
-    # sources
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    parent_dir = os.path.dirname(current_dir)
+
+
     jp_gachas_url = "https://sekai-world.github.io/sekai-master-db-diff/gachas.json"
     en_gachas_url = "https://sekai-world.github.io/sekai-master-db-en-diff/gachas.json"
     
+    jp_copy = os.path.join(parent_dir, 'master', 'jp.json')
+    en_copy = os.path.join(parent_dir, 'master', 'en.json')
+    jp_master = fetch_json_from_url(jp_gachas_url)
+    en_master = fetch_json_from_url(en_gachas_url)
 
-    jp_gachas = fetch_json_from_url(jp_gachas_url)
-    en_gachas = fetch_json_from_url(en_gachas_url)
+
+
+    en_gc = load_json(en_copy)
+    jp_gc = load_json(jp_copy)
+    en_diff = get_new_entries(en_gc,en_master)
+    jp_diff = get_new_entries(jp_gc, jp_master)
+ 
     
-    # Load cards data for banner type
+
+    #    Load cards data for banner type
     cards_data = []
     if os.path.exists('cards.json'):
         with open('cards.json', 'r', encoding='utf-8') as f:
@@ -24,7 +37,7 @@ def main():
             existing_jp_banners = json.load(f)
     
 
-    new_jp_banners = transform_jp_banners(jp_gachas, existing_jp_banners, cards_data)
+    new_jp_banners = transform_jp_banners(jp_diff, existing_jp_banners, cards_data)
     
 
     all_jp_banners = existing_jp_banners + new_jp_banners
@@ -47,7 +60,7 @@ def main():
     # Merge
     all_en_banners = existing_en_banners + new_en_banners
     
-    updated_en_banners = update_en_banners_from_en_source(en_gachas, all_en_banners)
+    updated_en_banners = update_en_banners_from_en_source(en_diff, all_en_banners)
     
     # Update JP banners with en_id from EN 
     updated_jp_banners = update_jp_banners_with_en_ids(all_jp_banners, updated_en_banners)
@@ -63,5 +76,17 @@ def main():
     print(f"Processed {len(new_jp_banners)} new JP banners")
     print(f"Processed {len(new_en_banners)} new EN banners")
 
+    try:
+        # Save updated JP master data
+        save_json(jp_copy,jp_master)
+        print(f"Updated local JP copy: {jp_copy}")
+        
+        # Save updated EN master data
+        save_json(en_copy,en_master )
+        print(f"Updated local EN copy: {en_copy}")
+    
+    except Exception as e:
+        print(f"Warning: Could not update local copies - {e}")
+        print("Make sure the 'master' directory exists and is writable")
 if __name__ == "__main__":
     main()
