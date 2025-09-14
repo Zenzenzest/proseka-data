@@ -370,9 +370,10 @@ def update_existing_cards(existing_cards: List[Dict], jp_cards: List[Dict], en_c
             
             # sub_unit for VS
             if unit == "Virtual Singers":
-                sub_unit = get_sub_unit(card_id)
-                if sub_unit:
-                    new_card["sub_unit"] = sub_unit
+                if char_id >= 27:
+                    sub_unit = get_sub_unit(card_id)
+                    if sub_unit:
+                      new_card["sub_unit"] = sub_unit
             
             existing_dict[card_id] = new_card
             new_count += 1
