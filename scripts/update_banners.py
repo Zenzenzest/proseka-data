@@ -76,17 +76,24 @@ def main():
     print(f"Processed {len(new_jp_banners)} new JP banners")
     print(f"Processed {len(new_en_banners)} new EN banners")
 
+    # Overwrites my en.json and jp.json if new entries
     try:
-        # Save updated JP master data
-        save_json(jp_copy,jp_master)
-        print(f"Updated local JP copy: {jp_copy}")
+  
+        if en_diff: 
+            save_json(en_master, en_copy)
+            print(f"Updated local EN copy: {en_copy}")
+        else:
+            print("No new EN entries, skipping EN update")
         
-        # Save updated EN master data
-        save_json(en_copy,en_master )
-        print(f"Updated local EN copy: {en_copy}")
+ 
+        if jp_diff: 
+            save_json(jp_master, jp_copy)
+            print(f"Updated local JP copy: {jp_copy}")
+        else:
+            print("No new JP entries, skipping JP update")
     
     except Exception as e:
         print(f"Warning: Could not update local copies - {e}")
-        print("Make sure the 'master' directory exists and is writable")
+
 if __name__ == "__main__":
     main()
