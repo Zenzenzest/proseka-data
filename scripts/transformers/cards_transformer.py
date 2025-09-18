@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import deepl
 import os
 from .common_transform import get_pst_pdt_status
-
+from .mappings import UPCOMING_COLLAB_TAG
 load_dotenv()
 
 def get_api_keys():
@@ -352,7 +352,13 @@ def update_existing_cards(existing_cards: List[Dict], jp_cards: List[Dict], en_c
                 # Try to translate JP prefix to English
                 translated_name = translate_jp_to_en(jp_prefix)
                 initial_name = translated_name if translated_name else ""
-            
+
+
+            jp_card_type = convert_card_type(jp_card.get("cardSupplyId", 1))
+            if (jp_card_type) == "limited_collab":
+                en_release_time = 0
+                initial_name = ""
+                
             # card structure
             new_card = {
                 "id": card_id,
@@ -369,7 +375,7 @@ def update_existing_cards(existing_cards: List[Dict], jp_cards: List[Dict], en_c
             }
             
             # sub_unit for VS
-            if unit == "Virtual Singers":
+            if unit == "Virtual Singers" and jp_card_type != "limited_collab":
                 if char_id >= 27:
                     sub_unit = get_sub_unit(card_id)
                     if sub_unit:
@@ -377,6 +383,8 @@ def update_existing_cards(existing_cards: List[Dict], jp_cards: List[Dict], en_c
             
             existing_dict[card_id] = new_card
             new_count += 1
+            if jp_card_type == "limited_collab":
+                new_card["collab_tag"] = UPCOMING_COLLAB_TAG[0]
     
     if updated_count > 0 or new_count > 0:
         print(f"Updated {updated_count} cards, added {new_count} new cards")

@@ -90,9 +90,7 @@ def convert_jp_time_to_en_normal(jp_start_time: int, jp_end_time: int) -> tuple:
 
 def create_en_banner_from_jp(jp_banner: Dict, existing_en_banners: List[Dict], jp_banners: List[Dict]) -> Dict:
     jp_banner_copy = jp_banner.copy()
-    is_collab = jp_banner_copy.get("banner_type") == "Collab"
-    if is_collab:
-        return
+
     en_banner = {
         "id": get_next_id(existing_en_banners),
         "name": jp_banner_copy.get("name", ""),

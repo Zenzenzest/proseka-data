@@ -48,6 +48,8 @@ def main():
     new_en_banners = []
     
     for jp_banner in new_jp_banners:
+        if jp_banner.get("banner_type") == "Collab":
+            continue
         en_banner = create_en_banner_from_jp(jp_banner, all_en_banners_so_far, all_jp_banners)
         new_en_banners.append(en_banner)
         all_en_banners_so_far.append(en_banner)

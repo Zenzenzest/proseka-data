@@ -131,3 +131,8 @@ EVENT_UNIT_MAPPINGS = {
     "theme_park": "wxs",
     "idol": "mmj"
 }
+
+
+UPCOMING_COLLAB_TAG = [
+    "Tamagotchi"
+]
