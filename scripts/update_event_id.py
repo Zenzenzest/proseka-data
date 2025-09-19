@@ -3,8 +3,19 @@ import os
 import tempfile
 import shutil
 from typing import Dict, List
-from .common_update import files_are_different
 
+def files_are_different(file1_path, file2_path):
+    """Compare two JSON files for content differences"""
+    if not os.path.exists(file1_path) or not os.path.exists(file2_path):
+        return True
+    try:
+        with open(file1_path, 'r', encoding='utf-8') as f1:
+            data1 = json.load(f1)
+        with open(file2_path, 'r', encoding='utf-8') as f2:
+            data2 = json.load(f2)
+        return data1 != data2
+    except:
+        return True
 
 def add_event_ids_to_banners(jp_banners: List[Dict], en_banners: List[Dict], jp_events: List[Dict]) -> tuple:
 
