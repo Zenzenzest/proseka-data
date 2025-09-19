@@ -11074,7 +11074,7 @@
   },
   {
     "id": 453,
-    "name": "Fuel my passionガチャ",
+    "name": "Fuel my passion Gacha",
     "start": 1761073200000,
     "end": 1761937140000,
     "cards": [1016, 1017, 1018],
@@ -11188,6 +11188,7 @@
   {
     "id": 457,
     "name": "The Tea Room Where Falling Leaves Dance Gacha",
+    
     "start": 1762804800000,
     "end": 1763668740000,
     "cards": [1028, 1029, 1030],
@@ -11691,7 +11692,7 @@
   },
   {
     "id": 475,
-    "name": "Stay determinedガチャ",
+    "name": "Stay determined Gacha",
     "start": 1770753600000,
     "end": 1771617540000,
     "cards": [1110, 1111, 1112],
@@ -14814,7 +14815,7 @@
   },
   {
     "id": 572,
-    "name": "[Finale Chapter] Velvet Afternoonガチャ",
+    "name": "[Finale Chapter] Velvet Afternoon Gacha",
     "cards": [1235, 1236, 1237, 1238, 1239, 1240],
     "characters": [21, 22, 23, 24, 25, 26],
     "keywords": [],
@@ -14853,7 +14854,7 @@
   },
   {
     "id": 573,
-    "name": "[Finale Chapter] Empty Teatimeガチャ",
+    "name": "[Finale Chapter] Empty Teatime Gacha",
     "cards": [1218, 1219, 1220, 1221],
     "characters": [5, 6, 7, 8],
     "keywords": [],
@@ -14891,7 +14892,7 @@
   },
   {
     "id": 574,
-    "name": "[Finale Chapter] Dream a Wonder Dreamガチャ",
+    "name": "[Finale Chapter] Dream a Wonder Dream Gacha",
     "cards": [1169, 1170, 1171, 1172],
     "characters": [13, 14, 15, 16],
     "keywords": [],
@@ -14929,7 +14930,7 @@
   },
   {
     "id": 575,
-    "name": " [Finale Chapter] Glance at Same Worldガチャ",
+    "name": " [Finale Chapter] Glance at Same World Gacha",
     "cards": [1151, 1152, 1153, 1154],
     "characters": [9, 10, 11, 12],
     "keywords": [],
@@ -14967,7 +14968,7 @@
   },
   {
     "id": 576,
-    "name": "[Finale Chapter] Night's Treasureガチャ",
+    "name": "[Finale Chapter] Night's Treasure Gacha",
     "cards": [1185, 1186, 1187, 1188],
     "characters": [17, 18, 19, 20],
     "keywords": [],
@@ -15005,7 +15006,7 @@
   },
   {
     "id": 577,
-    "name": "[Finale Chapter] Another sparkle Starsガチャ",
+    "name": "[Finale Chapter] Another sparkle Stars Gacha",
     "cards": [1189, 1190, 1191, 1192],
     "characters": [1, 2, 3, 4],
     "keywords": [],

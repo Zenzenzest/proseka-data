@@ -90,7 +90,8 @@ def convert_jp_time_to_en_normal(jp_start_time: int, jp_end_time: int) -> tuple:
 
 def create_en_banner_from_jp(jp_banner: Dict, existing_en_banners: List[Dict], jp_banners: List[Dict]) -> Dict:
     jp_banner_copy = jp_banner.copy()
-
+    if jp_banner_copy.get("banner_type") == "Collab":
+        return False
     en_banner = {
         "id": get_next_id(existing_en_banners),
         "name": jp_banner_copy.get("name", ""),
@@ -454,7 +455,7 @@ def extract_rarity_4_card_ids(gacha_details: List[Dict], cards_data: List[Dict],
             card = card_lookup.get(card_id)
             if card:
    
-                if card.get("rarity") == 4:
+                if card.get("rarity") == 4 or card.get("card_type") == "limited_collab":
                     rarity_4_card_ids.append(card_id)
     
     return rarity_4_card_ids
