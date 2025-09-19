@@ -14849,8 +14849,7 @@
     ],
     "banner_type": "Unit Limited Event",
     "start": 1790276400000,
-    "end": 1790362799000,
-    "event_id": 180
+    "end": 1790362799000
   },
   {
     "id": 573,
@@ -14888,8 +14887,7 @@
     ],
     "banner_type": "Unit Limited Event",
     "start": 1790190000000,
-    "end": 1790276399000,
-    "event_id": 180
+    "end": 1790276399000
   },
   {
     "id": 574,
@@ -14927,8 +14925,7 @@
     ],
     "banner_type": "Unit Limited Event",
     "start": 1789930800000,
-    "end": 1790017199000,
-    "event_id": 180
+    "end": 1790017199000
   },
   {
     "id": 575,
@@ -14966,8 +14963,7 @@
     ],
     "banner_type": "Unit Limited Event",
     "start": 1789844400000,
-    "end": 1789930799000,
-    "event_id": 180
+    "end": 1789930799000
   },
   {
     "id": 576,
@@ -15005,8 +15001,7 @@
     ],
     "banner_type": "Unit Limited Event",
     "start": 1790017200000,
-    "end": 1790103599000,
-    "event_id": 180
+    "end": 1790103599000
   },
   {
     "id": 577,
@@ -15044,7 +15039,6 @@
     ],
     "banner_type": "Unit Limited Event",
     "start": 1790103600000,
-    "end": 1790189999000,
-    "event_id": 180
+    "end": 1790189999000
   }
 ]
