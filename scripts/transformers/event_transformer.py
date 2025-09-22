@@ -85,7 +85,7 @@ def get_event_cards(event_id: int, event_cards_data: List[Dict]) -> List[int]:
     """Get card IDs for an event from eventCards data"""
     card_ids = []
     for event_card in event_cards_data:
-        if event_card.get("eventId") == event_id:
+        if event_card.get("eventId") == event_id and event_card.get("isDisplayCardStory") == True:
             card_id = event_card.get("cardId")
             if card_id:
                 card_ids.append(card_id)
