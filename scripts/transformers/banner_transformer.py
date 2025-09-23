@@ -356,7 +356,13 @@ def update_en_banners_from_en_source(en_gachas: List[Dict], existing_en_banners:
             continue
         processed_sekai_ids.add(sekai_id)
 
-        
+        name = gacha.get("name", "")
+
+        gacha_pickups = gacha.get("gachaPickups", [])
+        card_ids = extract_card_ids(gacha_pickups)
+        banner_type = determine_banner_type(name, card_ids, cards_data)
+        gacha_details_card_ids = extract_rarity_4_card_ids(gacha.get("gachaDetails", []), cards_data, banner_type)
+
         # Check if this banner already exists
         if sekai_id in en_banner_lookup:
             # UPDATE existing banner
@@ -369,7 +375,9 @@ def update_en_banners_from_en_source(en_gachas: List[Dict], existing_en_banners:
                     en_name = gacha.get("name", "")
                     en_start = gacha.get("startAt", 0)
                     en_end = gacha.get("endAt", 0)
-                    
+                    en_gacha_details = gacha_details_card_ids
+
+
                     existing_name = existing_banner.get("name", "")
                     if normalize_rerun_name(existing_name) != normalize_rerun_name(en_name):
                         result_banners[i]["name"] = en_name
@@ -380,6 +388,9 @@ def update_en_banners_from_en_source(en_gachas: List[Dict], existing_en_banners:
                     if result_banners[i].get("end") != en_end:
                         result_banners[i]["end"] = en_end
                     
+                    if result_banners[i].get("gachaDetails") != en_gacha_details:
+                        result_banners[i].get("gachaDetails") = en_gacha_details
+                        
                     # Check if banner was actually modified
                     if result_banners[i] != original_banner:
                         updated_count += 1
@@ -388,13 +399,6 @@ def update_en_banners_from_en_source(en_gachas: List[Dict], existing_en_banners:
                     break
         else:
             # ADD new banner 
-            name = gacha.get("name", "")
-
-            gacha_pickups = gacha.get("gachaPickups", [])
-            card_ids = extract_card_ids(gacha_pickups)
-            banner_type = determine_banner_type(name, card_ids, cards_data)
-            gacha_details_card_ids = extract_rarity_4_card_ids(gacha.get("gachaDetails", []), cards_data, banner_type)
-            
             new_banner = {
                 "id": get_next_id(result_banners),
                 "sekai_id": sekai_id,
