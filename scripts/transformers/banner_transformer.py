@@ -389,7 +389,7 @@ def update_en_banners_from_en_source(en_gachas: List[Dict], existing_en_banners:
                         result_banners[i]["end"] = en_end
                     
                     if result_banners[i].get("gachaDetails") != en_gacha_details:
-                        result_banners[i].get("gachaDetails") = en_gacha_details
+                        result_banners[i]["gachaDetails"] = en_gacha_details
                         
                     # Check if banner was actually modified
                     if result_banners[i] != original_banner:
