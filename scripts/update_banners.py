@@ -51,8 +51,9 @@ def main():
         if jp_banner.get("banner_type") == "Collab":
             continue
         en_banner = create_en_banner_from_jp(jp_banner, all_en_banners_so_far, all_jp_banners)
-        new_en_banners.append(en_banner)
-        all_en_banners_so_far.append(en_banner)
+        if en_banner:  # Check if en_banner is not False
+            new_en_banners.append(en_banner)
+            all_en_banners_so_far.append(en_banner)
     
     # Merge
     all_en_banners = existing_en_banners + new_en_banners
@@ -83,13 +84,13 @@ def main():
     else:
         print("No new banners to process")
 
-    # Handle EN banners  
-    if new_jp_banners or new_en_banners:  # Only if there are actual changes
+# Handle EN banners - update if there are any changes
+    if len(updated_en_banners) != len(existing_en_banners) or updated_en_banners != existing_en_banners:
         # Create temporary file for EN banners
         with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', delete=False, suffix='.json') as tmp_en:
             json.dump(updated_en_banners, tmp_en, ensure_ascii=False, indent=2)
             tmp_en_path = tmp_en.name
-        
+
         # Compare and update if different
         if files_are_different('en_banners.json', tmp_en_path):
             shutil.move(tmp_en_path, 'en_banners.json')
@@ -99,7 +100,7 @@ def main():
             os.unlink(tmp_en_path)  # Remove temp file
             print("No changes to en_banners.json")
     else:
-        print("No new banners to process")
+        print("No changes to en_banners.json")
 
     if files_updated:
         print(f"Processed {len(new_jp_banners)} new JP banners")
@@ -110,13 +111,13 @@ def main():
     # Overwrites my en.json and jp.json if new entries
     try:
         if en_diff: 
-            save_json(en_master, en_copy)
+            save_json(en_copy, en_master)  # Fixed: path first, data second
             print(f"Updated local EN copy: {en_copy}")
         else:
             print("No new EN entries, skipping EN update")
         
         if jp_diff: 
-            save_json(jp_master, jp_copy)
+            save_json(jp_copy, jp_master)  # Fixed: path first, data second
             print(f"Updated local JP copy: {jp_copy}")
         else:
             print("No new JP entries, skipping JP update")

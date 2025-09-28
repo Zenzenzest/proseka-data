@@ -408,10 +408,8 @@ def update_en_banners_from_en_source(en_gachas: List[Dict], existing_en_banners:
                 "end": gacha.get("endAt", 0),
                 "cards": card_ids, 
                 "keywords": [],
-                  "gachaDetails": gacha_details_card_ids,
+                "gachaDetails": gacha_details_card_ids,
                 "banner_type": banner_type,
-            
-
             }
             
             result_banners.append(new_banner)
@@ -433,7 +431,6 @@ def update_en_banners_from_en_source(en_gachas: List[Dict], existing_en_banners:
             print(f"Added banner IDs: {added_banner_ids}")
     
     return result_banners
-
 
 
 
