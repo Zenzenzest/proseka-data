@@ -2148,5 +2148,17 @@
  "keywords": [],
  "event_type": "world_link",
  "type": "World Link 2 Finale"
+},
+{
+ "id": 181,
+ "name": "Our Golden Days",
+ "start": 1790805600000,
+ "end": 1791604799000,
+ "close": 1791755999000,
+ "unit": "mixed",
+ "cards": [1254, 1255, 1256, 1257, 1258, 1259],
+ "keywords": [],
+ "event_type": "marathon",
+ "type": ""
 }
 ]
