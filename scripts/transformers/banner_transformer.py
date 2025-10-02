@@ -802,7 +802,7 @@ def transform_banner(banner: Dict, jp_banners: List[Dict], index: int, jp_cards:
             cards, en_banners, jp_banners)
         if original_name:
             en_banner["name"] = original_name
-
+    
     else:
         # For non-rerun banners, convert times with timezone adjustment
         en_start, en_end = convert_jp_time_to_en_normal(start, end)
@@ -812,9 +812,9 @@ def transform_banner(banner: Dict, jp_banners: List[Dict], index: int, jp_cards:
         en_banner["start"] = en_start
         en_banner["end"] = en_end
     if mode == "jp":
-
+        print(jp_banner)
         return jp_banner
 
     else:
-
+        print(en_banner)
         return en_banner
