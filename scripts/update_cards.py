@@ -1,44 +1,59 @@
 import json
 import os
-import tempfile
-import shutil
-from transformers.cards_transformer import fetch_json_from_url, update_existing_cards, merge_card_data
+from .transformers.cards_transformer import transform_diff, update_en_cards
+from .common_update import load_json
 
-from common_update import files_are_different
+def update_cards():
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    parent_dir = os.path.dirname(current_dir)
+    data_dir = os.path.join(parent_dir,"data")
 
-def main():
-  
-    jp_cards_url = "https://sekai-world.github.io/sekai-master-db-diff/cards.json"
-    en_cards_url = "https://sekai-world.github.io/sekai-master-db-en-diff/cards.json"
+    en_diff_file = os.path.join(data_dir,"diff","en_cards_diff.json")
+    jp_diff_file = os.path.join(data_dir, "diff", "jp_cards_diff.json")
+
+    if not os.path.exists(jp_diff_file) and not os.path.exists(en_diff_file):
+        print("No card diff files found, stopping execution")
+        return
+
+
+    def load_json_with_check(path):
+        if not os.path.exists(path):
+            print(f"Card diff file not found: {path}, using empty array")
+            return []
+        return load_json(path)
+
+    jp_diff = load_json_with_check(jp_diff_file)
+    en_diff = load_json_with_check(en_diff_file)
+
+
+    if len(jp_diff) == 0 and len(en_diff) == 0:
+        print("No differences found in card diff files, stopping execution")
+        return
+
+    with open('cards.json', 'r', encoding='utf-8') as c:
+        my_cards = json.load(c)
+
+    my_cards_file = os.path.join(parent_dir, "cards.json")
+
+    final_cards = my_cards
+
+    if len(jp_diff) >= 1:
+        transformed_jp_diff = transform_diff(jp_diff, mode="jp")
     
-    # Fetch data from both sources
-    jp_cards = fetch_json_from_url(jp_cards_url)
-    en_cards = fetch_json_from_url(en_cards_url)
-    
-    # Check cards.json 
-    if os.path.exists('cards.json'):
-        with open('cards.json', 'r', encoding='utf-8') as f:
-            existing_cards = json.load(f)
+        final_cards = final_cards + transformed_jp_diff  
         
-        # Update existing cards with new data
-        processed_cards = update_existing_cards(existing_cards, jp_cards, en_cards)
-    else:
-        # Create new cards.json (first run)
-        processed_cards = merge_card_data(jp_cards, en_cards)
-    
+        with open(jp_diff_file, 'w', encoding='utf-8') as f:
+            json.dump(transformed_jp_diff, f, indent=2, ensure_ascii=False)
 
-    # Create temporary file 
-    with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', delete=False, suffix='.json') as tmp_cards:
-        json.dump(processed_cards, tmp_cards, ensure_ascii=False, indent=2)
-        tmp_cards_path = tmp_cards.name
-    
-    # Compare and update if different
-    if files_are_different('cards.json', tmp_cards_path):
-        shutil.move(tmp_cards_path, 'cards.json')
-        print(f"Updated cards.json with {len(processed_cards)} cards")
-    else:
-        os.unlink(tmp_cards_path) 
-        print("No changes to cards.json")
+    if len(en_diff) >= 1:
+        transformed_en_diff = transform_diff(en_diff, mode="en")
+        final_cards = update_en_cards(final_cards, transformed_en_diff)
+        print("EN cards updated")
+        
+        with open(en_diff_file, 'w', encoding='utf-8') as f:
+            json.dump(transformed_en_diff, f, indent=2, ensure_ascii=False)
 
-if __name__ == "__main__":
-    main()
+    with open(my_cards_file, 'w', encoding='utf-8') as f:
+        json.dump(final_cards, f, indent=2, ensure_ascii=False)
+
+    print(f"Final merged data saved. Total cards: {len(final_cards)}")

@@ -6,23 +6,117 @@ import deepl
 import os
 from .common_transform import get_pst_pdt_status
 from .mappings import UPCOMING_COLLAB_TAG
-load_dotenv()
 
+from .mappings import (
+    CHARACTERS, RARITY_MAPPINGS, CARD_SUPPLY_MAPPINGS, CARD_UNIT_MAPPINGS, SUB_UNIT_MAPPINGS
+)
+load_dotenv()
 def get_api_keys():
     """Get API keys from environment variables"""
     deepseek_api_key = os.getenv('DEEPSEEK_API_KEY')
     deepl_api_key = os.getenv('DEEPL_API_KEY')
     return deepseek_api_key, deepl_api_key
 
-from .mappings import (
-    CHARACTERS, RARITY_MAPPINGS, CARD_SUPPLY_MAPPINGS, CARD_UNIT_MAPPINGS, SUB_UNIT_MAPPINGS
-)
+
 import re
 from datetime import datetime, timedelta
 
 
-EVENT_CARDS_URL = "https://sekai-world.github.io/sekai-master-db-diff/eventCards.json"
-EVENT_DECK_BONUSES_URL = "https://sekai-world.github.io/sekai-master-db-diff/eventDeckBonuses.json"
+EVENT_CARDS_URL = "https://raw.githubusercontent.com/Sekai-World/sekai-master-db-diff/refs/heads/main/eventCards.json"
+EVENT_DECK_BONUSES_URL = "https://raw.githubusercontent.com/Sekai-World/sekai-master-db-diff/refs/heads/main/eventDeckBonuses.json"
+
+def transform_diff(card_diff: List[Dict], mode: str) -> List[Dict]:
+    transformed_cards = []  
+    
+    for  cards in card_diff:
+        transformed_card = transform_card(cards, mode) 
+        transformed_cards.append(transformed_card)    
+
+    return transformed_cards 
+
+def transform_card(card_data, mode):
+    card_id = card_data.get('id', 0)
+    character = get_character_name(card_data.get('characterId', 0))
+    unit = get_unit_name(character)
+    char_id = get_character_id(character, unit, card_id)
+    jp_prefix = card_data.get("prefix", "")
+
+    card_rarity = convert_rarity(card_data.get("cardRarityType", "rarity_1"))
+    if card_rarity == 5:
+        initial_name = get_birthday_card_name(jp_prefix)
+    else:
+        translated_name = translate_jp_to_en(jp_prefix)
+        initial_name = translated_name if translated_name else ""
+    
+    card_type = convert_card_type(card_data.get("cardSupplyId", 1))
+    if card_type == "limited_collab":
+        en_release_time = 0
+        initial_name = ""
+
+    if mode == "jp":
+        jp_release_time = card_data.get("releaseAt", 0)
+        en_release_time = calculate_en_release_time(jp_release_time)
+        new_card = {
+            "id": card_id,
+            "name": initial_name,
+            "jp_name": jp_prefix,
+            "attribute": capitalize_attr(card_data.get("attr", "")),
+            "rarity": card_rarity,
+            "card_type": card_type,
+            "jp_released": jp_release_time,
+            "en_released": en_release_time,
+            "charId": char_id,
+            "character": character,
+            "unit": unit,
+        }
+            # sub_unit for VS
+        if unit == "Virtual Singers" and card_type != "limited_collab":
+            if char_id >= 27:
+                sub_unit = get_sub_unit(card_id)
+                if sub_unit:
+                    new_card["sub_unit"] = sub_unit
+
+    elif mode =="en":
+        new_card = {
+            "id":card_data.get("id",0),
+            "name": card_data.get("prefix", 0),
+            "en_released": card_data.get("releaseAt",0)
+        }
+    
+    return new_card
+  
+
+def update_en_cards(my_cards, en_cards_diff):
+    keys_to_update = ["id","name","en_released"] 
+    en_cards_diff_dict = {obj['id']: obj for obj in en_cards_diff if 'id' in obj}
+    updated_count = 0
+    
+    for obj1 in my_cards:
+        obj1_id = obj1.get('id')
+        
+        if obj1_id in en_cards_diff_dict:
+            obj2 = en_cards_diff_dict[obj1_id]
+            
+            # Check if any of the specific keys have different values
+            needs_update = False
+            changes = []
+            
+            for key in keys_to_update:
+                if key in obj2 and obj1.get(key) != obj2[key]:
+                    obj1[key] = obj2[key]
+                    needs_update = True
+                    changes.append(f"{key}: {obj1.get(key)} -> {obj2[key]}")
+            
+            if needs_update:
+                updated_count += 1
+                print(f"ID {obj1_id} updated. Changes: {', '.join(changes)}")
+    
+    print(f"Updated {updated_count} objects")
+    return my_cards
+
+
+
+
 
 
 def fetch_json_from_url(url: str) -> Dict:
@@ -56,7 +150,7 @@ def translate_jp_to_en(jp_text: str) -> str:
         return ""
 
 
-# BIRTHDAY CARD NAME
+
 def get_birthday_card_name(jp_prefix: str) -> str:
     """Get English name for birthday cards by adding 1 year to the date in JP prefix"""
     if not jp_prefix:
@@ -75,17 +169,11 @@ def get_birthday_card_name(jp_prefix: str) -> str:
     return jp_prefix 
 
 
-
-
-
-
-
 def calculate_en_release_time(jp_release_time_ms: int) -> int:
     """Calculate EN release time based on JP release time and current timezone"""
     if jp_release_time_ms == 0:
         return 0
     
-
     jp_release_dt = datetime.fromtimestamp(jp_release_time_ms / 1000, tz=pytz.UTC)
     
  
@@ -104,9 +192,6 @@ def calculate_en_release_time(jp_release_time_ms: int) -> int:
     return int(en_release_dt.timestamp() * 1000)
 
 
-
-
-
 def get_character_name(character_id: int) -> str:
     """Convert character ID to character name"""
     try:
@@ -114,6 +199,7 @@ def get_character_name(character_id: int) -> str:
         return CHARACTERS[character_id - 1]
     except IndexError:
         return ""
+
 
 def get_unit_name(character_name: str) -> str:
     """Get unit name based on character name"""
@@ -139,8 +225,8 @@ def get_sub_unit(card_id: int) -> Optional[str]:
     """Get sub_unit for Virtual Singer cards using event data"""
     try:
         event_cards = fetch_json_from_url(EVENT_CARDS_URL)
-        events = fetch_json_from_url("https://sekai-world.github.io/sekai-master-db-diff/events.json")
-        
+        events = fetch_json_from_url("https://raw.githubusercontent.com/Sekai-World/sekai-master-db-diff/refs/heads/main/events.json")
+        cards = fetch_json_from_url("https://raw.githubusercontent.com/Sekai-World/sekai-master-db-diff/refs/heads/main/cards.json")
         # Step 1: Find matching event card by cardId
         matching_event_card = None
         for event_card in event_cards:
@@ -155,11 +241,23 @@ def get_sub_unit(card_id: int) -> Optional[str]:
         event_id = matching_event_card.get("eventId")
         if not event_id:
             return None
-            
+        
         # Step 3: Find matching event by eventId
         matching_event = None
         for event in events:
-            if event.get("id") == event_id:
+            # For mixed events
+            if event.get("unit") == "none":
+                for ev in event_cards:
+                    if ev.get("eventId") == event_id and ev.get("bonusRate") == 20:
+                        for card in cards:
+                            if ev.get("cardId") == card.get("id"):
+                                character = get_character_name(card.get('characterId'))
+                                unit = get_unit_name(character)
+                                event_unit = unit
+                           
+                                return event_unit
+                            
+            elif event.get("id") == event_id:
                 matching_event = event
                 break
         
@@ -177,7 +275,8 @@ def get_sub_unit(card_id: int) -> Optional[str]:
 
 
 def get_virtual_singer_char_id(card_id: int) -> Optional[int]:
-    """Get character ID for Virtual Singer cards using event data"""
+
+    print("Getting Virtual Singer ID...")
     try:
         # Fetch the required JSON files
         event_cards = fetch_json_from_url(EVENT_CARDS_URL)
@@ -188,6 +287,7 @@ def get_virtual_singer_char_id(card_id: int) -> Optional[int]:
         for event_card in event_cards:
             if event_card.get("cardId") == card_id:
                 matching_event_card = event_card
+                print(matching_event_card)
                 break
         
         if not matching_event_card:
@@ -203,7 +303,7 @@ def get_virtual_singer_char_id(card_id: int) -> Optional[int]:
         for bonus in event_deck_bonuses:
             if bonus.get("eventId") == event_id:
                 matching_bonuses.append(bonus)
-                if len(matching_bonuses) == 5:
+                if len(matching_bonuses) == 6:
                     break
         
         # Step 4: Find the one with gameCharacterUnitId > 20
@@ -211,6 +311,7 @@ def get_virtual_singer_char_id(card_id: int) -> Optional[int]:
             game_char_unit_id = bonus.get("gameCharacterUnitId", 0)
             if game_char_unit_id > 20:
                 return game_char_unit_id
+            
                 
         return None
     except Exception:
@@ -228,7 +329,7 @@ def get_character_id(character_name: str, unit: str, card_id: int) -> int:
             return virtual_char_id
     
 
-    # fall back to normal mapping for non-VS or if lookup failed
+  
     try:
    
         return CHARACTERS.index(character_name) + 1
@@ -236,157 +337,3 @@ def get_character_id(character_name: str, unit: str, card_id: int) -> int:
         return 0 
 
 
-# MERGE
-def merge_card_data(jp_cards: List[Dict], en_cards: List[Dict]) -> List[Dict]:
-
-    # lookup dictionaries
-    en_cards_dict = {card['id']: card for card in en_cards}
-    jp_cards_dict = {card['id']: card for card in jp_cards}
-    
-    result = []
-    processed_ids = set()
-    
-
-    for card_id in jp_cards_dict.keys():
-        jp_card = jp_cards_dict[card_id]
-        en_card = en_cards_dict.get(card_id)
-        
-        if en_card:
-            processed_card = {
-                "id": card_id,
-                "name": en_card.get("prefix", ""),
-                "jp_name": jp_card.get("prefix", ""),
-                "attribute": capitalize_attr(jp_card.get("attr", "")),
-                "rarity": convert_rarity(jp_card.get("cardRarityType", "rarity_1")),
-                "card_type": convert_card_type(jp_card.get("cardSupplyId", 1)),
-                "jp_released": jp_card.get("releaseAt", 0),
-                "en_released": en_card.get("releaseAt", 0),
-                "character": "",
-                "unit": "",
-                "charId": jp_card.get("characterId", 0)
-            }
-            result.append(processed_card)
-            processed_ids.add(card_id)
-    
-
-    #  JP-only cards (not yet released in EN)
-    for card_id in jp_cards_dict.keys():
-        if card_id not in processed_ids:
-            jp_card = jp_cards_dict[card_id]
-            processed_card = {
-                "id": card_id,
-                "name": "", 
-                "jp_name": jp_card.get("prefix", ""),
-                "attribute": capitalize_attr(jp_card.get("attr", "")),
-                "rarity": convert_rarity(jp_card.get("cardRarityType", "rarity_1")),
-                "card_type": convert_card_type(jp_card.get("cardSupplyId", 1)),
-                "jp_released": jp_card.get("releaseAt", 0),
-                "en_released": 0, 
-                "character": "",
-                "unit": "",
-                "charId": jp_card.get("characterId", 0)
-            }
-            result.append(processed_card)
-    return result
-
-
-
-
-
-
-def update_existing_cards(existing_cards: List[Dict], jp_cards: List[Dict], en_cards: List[Dict]) -> List[Dict]:
-    """Update existing cards.json with new EN data when available"""
-    # create lookup dictionaries
-    en_cards_dict = {card['id']: card for card in en_cards}
-    jp_cards_dict = {card['id']: card for card in jp_cards}
-    
-    # Convert cards to dictionary for easier lookup
-    existing_dict = {card['id']: card for card in existing_cards}
-    updated_count = 0
-    
-    # update existing cards with new EN data only
-    for card_id, existing_card in existing_dict.items():
-        en_card = en_cards_dict.get(card_id)
-        jp_card = jp_cards_dict.get(card_id)
-        
-        original_card = existing_card.copy()  # keep copy to check for changes
-        
-
-        if en_card:
-    
-            if existing_card.get("name") != en_card.get("prefix", ""):
-                existing_card["name"] = en_card.get("prefix", "")
-            if existing_card.get("en_released") != en_card.get("releaseAt", 0):
-                existing_card["en_released"] = en_card.get("releaseAt", 0)
-        
-        # Check if my card is actually modified
-        if existing_card != original_card:
-            updated_count += 1
-    
-    # Add completely new JP cards 
-    new_count = 0
-    for card_id, jp_card in jp_cards_dict.items():
-        if card_id not in existing_dict:
-            character_id = jp_card.get("characterId", 0)
-            character_name = get_character_name(character_id)
-            unit = get_unit_name(character_name)
-            
-      
-            char_id = get_character_id(character_name, unit, card_id)
-            
-
-            jp_release_time = jp_card.get("releaseAt", 0)
-            
-            if jp_release_time > 0:
-                en_release_time = calculate_en_release_time(jp_release_time)
-            else:
-                en_release_time = 0
-                
-            # card name - special handling for different card types
-            jp_prefix = jp_card.get("prefix", "")
-            card_rarity = convert_rarity(jp_card.get("cardRarityType", "rarity_1"))
-            
-            if card_rarity == 5:  # Bday/Anniv card
-                initial_name = get_birthday_card_name(jp_prefix)
-            else:
-                # Try to translate JP prefix to English
-                translated_name = translate_jp_to_en(jp_prefix)
-                initial_name = translated_name if translated_name else ""
-
-
-            jp_card_type = convert_card_type(jp_card.get("cardSupplyId", 1))
-            if (jp_card_type) == "limited_collab":
-                en_release_time = 0
-                initial_name = ""
-                
-            # card structure
-            new_card = {
-                "id": card_id,
-                "name": initial_name, 
-                "jp_name": jp_prefix,
-                "attribute": capitalize_attr(jp_card.get("attr", "")),
-                "rarity": card_rarity,
-                "card_type": convert_card_type(jp_card.get("cardSupplyId", 1)),
-                "jp_released": jp_release_time,
-                "en_released": en_release_time,
-                "charId": char_id,
-                "character": character_name,
-                "unit": unit
-            }
-            
-            # sub_unit for VS
-            if unit == "Virtual Singers" and jp_card_type != "limited_collab":
-                if char_id >= 27:
-                    sub_unit = get_sub_unit(card_id)
-                    if sub_unit:
-                      new_card["sub_unit"] = sub_unit
-            
-            existing_dict[card_id] = new_card
-            new_count += 1
-            if jp_card_type == "limited_collab":
-                new_card["collab_tag"] = UPCOMING_COLLAB_TAG[0]
-    
-    if updated_count > 0 or new_count > 0:
-        print(f"Updated {updated_count} cards, added {new_count} new cards")
-    
-    return list(existing_dict.values())

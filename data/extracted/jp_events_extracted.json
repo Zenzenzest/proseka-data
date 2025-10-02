@@ -1,0 +1,1631 @@
+[
+    {
+        "id": 1,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "雨上がりの一番星",
+        "startAt": 1602223200000,
+        "aggregateAt": 1603022399000,
+        "closedAt": 1603173599000
+    },
+    {
+        "id": 2,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "囚われのマリオネット",
+        "startAt": 1603173600000,
+        "aggregateAt": 1603972799000,
+        "closedAt": 1604123999000
+    },
+    {
+        "id": 3,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "全力！ワンダーハロウィン！",
+        "startAt": 1604124000000,
+        "aggregateAt": 1604750399000,
+        "closedAt": 1604901599000
+    },
+    {
+        "id": 4,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "走れ！体育祭！～実行委員は大忙し～",
+        "startAt": 1604901600000,
+        "aggregateAt": 1605614399000,
+        "closedAt": 1605765599000
+    },
+    {
+        "id": 5,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "ここからRE:START！",
+        "startAt": 1605765600000,
+        "aggregateAt": 1606564799000,
+        "closedAt": 1606715999000
+    },
+    {
+        "id": 6,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "いつか、背中あわせのリリックを",
+        "startAt": 1606716000000,
+        "aggregateAt": 1607428799000,
+        "closedAt": 1607579999000
+    },
+    {
+        "id": 7,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "KAMIKOU FESTIVAL！",
+        "startAt": 1607580000000,
+        "aggregateAt": 1608292799000,
+        "closedAt": 1608443999000
+    },
+    {
+        "id": 8,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "聖なる夜に、この歌声を",
+        "startAt": 1608444000000,
+        "aggregateAt": 1609243199000,
+        "closedAt": 1609394399000
+    },
+    {
+        "id": 9,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "セカイのハッピーニューイヤー！",
+        "startAt": 1609394400000,
+        "aggregateAt": 1610107199000,
+        "closedAt": 1610258399000
+    },
+    {
+        "id": 10,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "揺れるまま、でも君は前へ",
+        "startAt": 1610258400000,
+        "aggregateAt": 1611057599000,
+        "closedAt": 1611208799000
+    },
+    {
+        "id": 11,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Color of Myself！",
+        "startAt": 1611208800000,
+        "aggregateAt": 1611921599000,
+        "closedAt": 1612072799000
+    },
+    {
+        "id": 12,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Period of NOCTURNE",
+        "startAt": 1612072800000,
+        "aggregateAt": 1612699199000,
+        "closedAt": 1612850399000
+    },
+    {
+        "id": 13,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "響くトワイライトパレード",
+        "startAt": 1612850400000,
+        "aggregateAt": 1613476799000,
+        "closedAt": 1613627999000
+    },
+    {
+        "id": 14,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "満たされないペイルカラー",
+        "startAt": 1613628000000,
+        "aggregateAt": 1614340799000,
+        "closedAt": 1614491999000
+    },
+    {
+        "id": 15,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "スマイルオブドリーマー",
+        "startAt": 1614492000000,
+        "aggregateAt": 1615204799000,
+        "closedAt": 1615355999000
+    },
+    {
+        "id": 16,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "天馬さんちのひな祭り",
+        "startAt": 1615356000000,
+        "aggregateAt": 1616241599000,
+        "closedAt": 1616392799000
+    },
+    {
+        "id": 17,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "届け！HOPEFUL STAGE♪",
+        "startAt": 1616392800000,
+        "aggregateAt": 1617105599000,
+        "closedAt": 1617256799000
+    },
+    {
+        "id": 18,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "君と歌う、桜舞う世界で",
+        "startAt": 1617256800000,
+        "aggregateAt": 1617969599000,
+        "closedAt": 1618120799000
+    },
+    {
+        "id": 19,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "シークレット・ディスタンス",
+        "startAt": 1618120800000,
+        "aggregateAt": 1618833599000,
+        "closedAt": 1618984799000
+    },
+    {
+        "id": 20,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Resonate with you",
+        "startAt": 1618984800000,
+        "aggregateAt": 1619611199000,
+        "closedAt": 1619762399000
+    },
+    {
+        "id": 21,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "STRAY BAD DOG",
+        "startAt": 1619762400000,
+        "aggregateAt": 1620475199000,
+        "closedAt": 1620626399000
+    },
+    {
+        "id": 22,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "お悩み聞かせて！わくわくピクニック",
+        "startAt": 1620626400000,
+        "aggregateAt": 1621425599000,
+        "closedAt": 1621576799000
+    },
+    {
+        "id": 23,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "頑張るあなたにBreak Time！",
+        "startAt": 1621576800000,
+        "aggregateAt": 1622289599000,
+        "closedAt": 1622440799000
+    },
+    {
+        "id": 24,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "純白の貴方へ、誓いの歌を！",
+        "startAt": 1622440800000,
+        "aggregateAt": 1623239999000,
+        "closedAt": 1623391199000
+    },
+    {
+        "id": 25,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "ワンダーマジカルショウタイム！",
+        "startAt": 1623391200000,
+        "aggregateAt": 1624103999000,
+        "closedAt": 1624255199000
+    },
+    {
+        "id": 26,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "カーネーション・リコレクション",
+        "startAt": 1624255200000,
+        "aggregateAt": 1624881599000,
+        "closedAt": 1625032799000
+    },
+    {
+        "id": 27,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Unnamed Harmony",
+        "startAt": 1625032800000,
+        "aggregateAt": 1625659199000,
+        "closedAt": 1625810399000
+    },
+    {
+        "id": 28,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Awakening Beat",
+        "startAt": 1625810400000,
+        "aggregateAt": 1626609599000,
+        "closedAt": 1626760799000
+    },
+    {
+        "id": 29,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "夏祭り、鳴り響く音は",
+        "startAt": 1626760800000,
+        "aggregateAt": 1627559999000,
+        "closedAt": 1627711199000
+    },
+    {
+        "id": 30,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "きっと最高のsummer！",
+        "startAt": 1627711200000,
+        "aggregateAt": 1628423999000,
+        "closedAt": 1628575199000
+    },
+    {
+        "id": 31,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "ハッピー・ラブリー・エブリデイ！",
+        "startAt": 1628575200000,
+        "aggregateAt": 1629287999000,
+        "closedAt": 1629439199000
+    },
+    {
+        "id": 32,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "マーメイドにあこがれて",
+        "startAt": 1629439200000,
+        "aggregateAt": 1630238399000,
+        "closedAt": 1630389599000
+    },
+    {
+        "id": 33,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "ふたり、月うさぎ",
+        "startAt": 1630389600000,
+        "aggregateAt": 1631102399000,
+        "closedAt": 1631253599000
+    },
+    {
+        "id": 34,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Knock the Future!!",
+        "startAt": 1631253600000,
+        "aggregateAt": 1632052799000,
+        "closedAt": 1632203999000
+    },
+    {
+        "id": 35,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "灯のミラージュ",
+        "startAt": 1632204000000,
+        "aggregateAt": 1632916799000,
+        "closedAt": 1633067999000
+    },
+    {
+        "id": 36,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "スクランブル・ファンフェスタ！",
+        "startAt": 1633068000000,
+        "aggregateAt": 1633780799000,
+        "closedAt": 1633931999000
+    },
+    {
+        "id": 37,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Bout for Beside You",
+        "startAt": 1633932000000,
+        "aggregateAt": 1634644799000,
+        "closedAt": 1634795999000
+    },
+    {
+        "id": 38,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "Revival my dream",
+        "startAt": 1634796000000,
+        "aggregateAt": 1635508799000,
+        "closedAt": 1635659999000
+    },
+    {
+        "id": 39,
+        "unit": "school_refusal",
+        "eventType": "cheerful_carnival",
+        "name": "ボクのあしあと キミのゆくさき",
+        "startAt": 1635660000000,
+        "aggregateAt": 1636459199000,
+        "closedAt": 1636610399000
+    },
+    {
+        "id": 40,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "揺るがぬ想い、今言葉にして",
+        "startAt": 1636610400000,
+        "aggregateAt": 1637236799000,
+        "closedAt": 1637387999000
+    },
+    {
+        "id": 41,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "バディ・ファニー・スペンドタイム♪",
+        "startAt": 1637388000000,
+        "aggregateAt": 1638100799000,
+        "closedAt": 1638251999000
+    },
+    {
+        "id": 42,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "交わる旋律 灯るぬくもり",
+        "startAt": 1638252000000,
+        "aggregateAt": 1638964799000,
+        "closedAt": 1639115999000
+    },
+    {
+        "id": 43,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "MOREMOREMakingXmas",
+        "startAt": 1639116000000,
+        "aggregateAt": 1639828799000,
+        "closedAt": 1639979999000
+    },
+    {
+        "id": 44,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Same Dreams,Same Colors",
+        "startAt": 1639980000000,
+        "aggregateAt": 1640779199000,
+        "closedAt": 1640930399000
+    },
+    {
+        "id": 45,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "祈りの先 願う明日は",
+        "startAt": 1640930400000,
+        "aggregateAt": 1641815999000,
+        "closedAt": 1641967199000
+    },
+    {
+        "id": 46,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "POP IN MY HEART!!",
+        "startAt": 1641967200000,
+        "aggregateAt": 1642593599000,
+        "closedAt": 1642744799000
+    },
+    {
+        "id": 47,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "いつか、絶望の底から",
+        "startAt": 1642744800000,
+        "aggregateAt": 1643457599000,
+        "closedAt": 1643608799000
+    },
+    {
+        "id": 48,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "秘密の♡バレンタイン大作戦！",
+        "startAt": 1643608800000,
+        "aggregateAt": 1644235199000,
+        "closedAt": 1644386399000
+    },
+    {
+        "id": 49,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Legend still vivid",
+        "startAt": 1644386400000,
+        "aggregateAt": 1645012799000,
+        "closedAt": 1645163999000
+    },
+    {
+        "id": 50,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "あの日、空は遠かった",
+        "startAt": 1645164000000,
+        "aggregateAt": 1645876799000,
+        "closedAt": 1646027999000
+    },
+    {
+        "id": 51,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "怪盗紳士のハラハラ！？ホワイトデー",
+        "startAt": 1646028000000,
+        "aggregateAt": 1646827199000,
+        "closedAt": 1646978399000
+    },
+    {
+        "id": 52,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "Cast Spell on You",
+        "startAt": 1646978400000,
+        "aggregateAt": 1647604799000,
+        "closedAt": 1647755999000
+    },
+    {
+        "id": 53,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "空白のキャンバスに描く私は",
+        "startAt": 1647756000000,
+        "aggregateAt": 1648468799000,
+        "closedAt": 1648619999000
+    },
+    {
+        "id": 54,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "セカイの桜、つながる想い",
+        "startAt": 1648620000000,
+        "aggregateAt": 1649505599000,
+        "closedAt": 1649656799000
+    },
+    {
+        "id": 55,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "まばゆい光のステージで",
+        "startAt": 1649656800000,
+        "aggregateAt": 1650369599000,
+        "closedAt": 1650520799000
+    },
+    {
+        "id": 56,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Live with memories",
+        "startAt": 1650520800000,
+        "aggregateAt": 1651147199000,
+        "closedAt": 1651298399000
+    },
+    {
+        "id": 57,
+        "unit": "idol",
+        "eventType": "cheerful_carnival",
+        "name": "つなぐPainful Hope",
+        "startAt": 1651298400000,
+        "aggregateAt": 1652011199000,
+        "closedAt": 1652162399000
+    },
+    {
+        "id": 58,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "白熱！神高応援団！",
+        "startAt": 1652162400000,
+        "aggregateAt": 1652875199000,
+        "closedAt": 1653026399000
+    },
+    {
+        "id": 59,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "THE POWER OF UNITY",
+        "startAt": 1653026400000,
+        "aggregateAt": 1653825599000,
+        "closedAt": 1653976799000
+    },
+    {
+        "id": 60,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "青空に願うユア・ハピネス！",
+        "startAt": 1653976800000,
+        "aggregateAt": 1654689599000,
+        "closedAt": 1654840799000
+    },
+    {
+        "id": 61,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "迷い子の手を引く、そのさきは",
+        "startAt": 1654840800000,
+        "aggregateAt": 1655553599000,
+        "closedAt": 1655704799000
+    },
+    {
+        "id": 62,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "絶体絶命！？アイランドパニック！",
+        "startAt": 1655704800000,
+        "aggregateAt": 1656417599000,
+        "closedAt": 1656568799000
+    },
+    {
+        "id": 63,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "みんなでエンジョイ！スポジョイパーク",
+        "startAt": 1656568800000,
+        "aggregateAt": 1657367999000,
+        "closedAt": 1657519199000
+    },
+    {
+        "id": 64,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "The Vivid Old Tale",
+        "startAt": 1657519200000,
+        "aggregateAt": 1658231999000,
+        "closedAt": 1658383199000
+    },
+    {
+        "id": 65,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "No seek No find",
+        "startAt": 1658383200000,
+        "aggregateAt": 1659095999000,
+        "closedAt": 1659247199000
+    },
+    {
+        "id": 66,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "close game/OFFLINE",
+        "startAt": 1659247200000,
+        "aggregateAt": 1659959999000,
+        "closedAt": 1660111199000
+    },
+    {
+        "id": 67,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "青空の先、輝きを追いかけて",
+        "startAt": 1660111200000,
+        "aggregateAt": 1660823999000,
+        "closedAt": 1660975199000
+    },
+    {
+        "id": 68,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "そしていま、リボンを結んで",
+        "startAt": 1660975200000,
+        "aggregateAt": 1661774399000,
+        "closedAt": 1661925599000
+    },
+    {
+        "id": 69,
+        "unit": "light_sound",
+        "eventType": "cheerful_carnival",
+        "name": "Don't lose faith!",
+        "startAt": 1661925600000,
+        "aggregateAt": 1662551999000,
+        "closedAt": 1662703199000
+    },
+    {
+        "id": 70,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "好きを描いて♪レインボーキャンバス",
+        "startAt": 1662703200000,
+        "aggregateAt": 1663502399000,
+        "closedAt": 1663653599000
+    },
+    {
+        "id": 71,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Walk on and on",
+        "startAt": 1663653600000,
+        "aggregateAt": 1664366399000,
+        "closedAt": 1664517599000
+    },
+    {
+        "id": 72,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "この祭に 夕闇色も",
+        "startAt": 1664517600000,
+        "aggregateAt": 1665403199000,
+        "closedAt": 1665554399000
+    },
+    {
+        "id": 73,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "拝啓、あの頃のわたしへ",
+        "startAt": 1665554400000,
+        "aggregateAt": 1666180799000,
+        "closedAt": 1666331999000
+    },
+    {
+        "id": 74,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "カーテンコールに惜別を",
+        "startAt": 1666332000000,
+        "aggregateAt": 1667044799000,
+        "closedAt": 1667195999000
+    },
+    {
+        "id": 75,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "絶叫！？ オオカミの森へようこそ！",
+        "startAt": 1667196000000,
+        "aggregateAt": 1667995199000,
+        "closedAt": 1668146399000
+    },
+    {
+        "id": 76,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Echo my melody",
+        "startAt": 1668146400000,
+        "aggregateAt": 1668772799000,
+        "closedAt": 1668923999000
+    },
+    {
+        "id": 77,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "願いは、いつか朝をこえて",
+        "startAt": 1668924000000,
+        "aggregateAt": 1669636799000,
+        "closedAt": 1669787999000
+    },
+    {
+        "id": 78,
+        "unit": "idol",
+        "eventType": "cheerful_carnival",
+        "name": "あの日の夢の、彼方向こうへ",
+        "startAt": 1669788000000,
+        "aggregateAt": 1670587199000,
+        "closedAt": 1670738399000
+    },
+    {
+        "id": 79,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Find A Way Out",
+        "startAt": 1670738400000,
+        "aggregateAt": 1671451199000,
+        "closedAt": 1671602399000
+    },
+    {
+        "id": 80,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "弓引け、白の世界で",
+        "startAt": 1671602400000,
+        "aggregateAt": 1672315199000,
+        "closedAt": 1672466399000
+    },
+    {
+        "id": 81,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "新春！ 獅子舞ロボのお正月ショー！",
+        "startAt": 1672466400000,
+        "aggregateAt": 1673179199000,
+        "closedAt": 1673330399000
+    },
+    {
+        "id": 82,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "夢の途中、輝く星たちへ",
+        "startAt": 1673330400000,
+        "aggregateAt": 1674129599000,
+        "closedAt": 1674280799000
+    },
+    {
+        "id": 83,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Little Bravers！",
+        "startAt": 1674280800000,
+        "aggregateAt": 1674993599000,
+        "closedAt": 1675144799000
+    },
+    {
+        "id": 84,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "キャンドルの香りは思い出と共に",
+        "startAt": 1675144800000,
+        "aggregateAt": 1675857599000,
+        "closedAt": 1676008799000
+    },
+    {
+        "id": 85,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "ほどかれた糸のその先に",
+        "startAt": 1676008800000,
+        "aggregateAt": 1676635199000,
+        "closedAt": 1676786399000
+    },
+    {
+        "id": 86,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Kick it up a notch",
+        "startAt": 1676786400000,
+        "aggregateAt": 1677412799000,
+        "closedAt": 1677563999000
+    },
+    {
+        "id": 87,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Never Give Up Cooking！",
+        "startAt": 1677564000000,
+        "aggregateAt": 1678363199000,
+        "closedAt": 1678514399000
+    },
+    {
+        "id": 88,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "天の果てのフェニックスへ",
+        "startAt": 1678514400000,
+        "aggregateAt": 1679227199000,
+        "closedAt": 1679378399000
+    },
+    {
+        "id": 89,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "イミシブル・ディスコード",
+        "startAt": 1679378400000,
+        "aggregateAt": 1680004799000,
+        "closedAt": 1680155999000
+    },
+    {
+        "id": 90,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "交響する街の片隅で",
+        "startAt": 1680156000000,
+        "aggregateAt": 1681041599000,
+        "closedAt": 1681192799000
+    },
+    {
+        "id": 91,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Get over it.",
+        "startAt": 1681192800000,
+        "aggregateAt": 1681905599000,
+        "closedAt": 1682056799000
+    },
+    {
+        "id": 92,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "Re-tie Friendship",
+        "startAt": 1682056800000,
+        "aggregateAt": 1682683199000,
+        "closedAt": 1682834399000
+    },
+    {
+        "id": 93,
+        "unit": "school_refusal",
+        "eventType": "cheerful_carnival",
+        "name": "ボク達の生存逃走",
+        "startAt": 1682834400000,
+        "aggregateAt": 1683633599000,
+        "closedAt": 1683784799000
+    },
+    {
+        "id": 94,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "船出の前のワンデイトリップ",
+        "startAt": 1683784800000,
+        "aggregateAt": 1684411199000,
+        "closedAt": 1684562399000
+    },
+    {
+        "id": 95,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "カナリアは窮境に歌う",
+        "startAt": 1684562400000,
+        "aggregateAt": 1685361599000,
+        "closedAt": 1685512799000
+    },
+    {
+        "id": 96,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "隣に立つ、優しいあなたへ",
+        "startAt": 1685512800000,
+        "aggregateAt": 1686225599000,
+        "closedAt": 1686376799000
+    },
+    {
+        "id": 97,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Light Up the Fire",
+        "startAt": 1686376800000,
+        "aggregateAt": 1687089599000,
+        "closedAt": 1687240799000
+    },
+    {
+        "id": 98,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "STEP by STEP！",
+        "startAt": 1687240800000,
+        "aggregateAt": 1687953599000,
+        "closedAt": 1688104799000
+    },
+    {
+        "id": 99,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "一期一会な百鬼夜行！？",
+        "startAt": 1688104800000,
+        "aggregateAt": 1688903999000,
+        "closedAt": 1689055199000
+    },
+    {
+        "id": 100,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "仮面の私にさよならを",
+        "startAt": 1689055200000,
+        "aggregateAt": 1689767999000,
+        "closedAt": 1689919199000
+    },
+    {
+        "id": 101,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "つなぐ、星の歌",
+        "startAt": 1689919200000,
+        "aggregateAt": 1690631999000,
+        "closedAt": 1690783199000
+    },
+    {
+        "id": 102,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "ドタバタ cafe ●REC!!",
+        "startAt": 1690783200000,
+        "aggregateAt": 1691495999000,
+        "closedAt": 1691647199000
+    },
+    {
+        "id": 103,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "On Your Feet",
+        "startAt": 1691647200000,
+        "aggregateAt": 1692446399000,
+        "closedAt": 1692597599000
+    },
+    {
+        "id": 104,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "あたしたちのハッピーエンド",
+        "startAt": 1692597600000,
+        "aggregateAt": 1693310399000,
+        "closedAt": 1693461599000
+    },
+    {
+        "id": 105,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "セカイに響け！Your Song",
+        "startAt": 1693461600000,
+        "aggregateAt": 1694260799000,
+        "closedAt": 1694411999000
+    },
+    {
+        "id": 106,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "君と紡ぐPrecious memories",
+        "startAt": 1694412000000,
+        "aggregateAt": 1695038399000,
+        "closedAt": 1695189599000
+    },
+    {
+        "id": 107,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Let's study hard！",
+        "startAt": 1695189600000,
+        "aggregateAt": 1695902399000,
+        "closedAt": 1696053599000
+    },
+    {
+        "id": 108,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "ハロー・グッド・デイ！",
+        "startAt": 1696053600000,
+        "aggregateAt": 1696939199000,
+        "closedAt": 1697090399000
+    },
+    {
+        "id": 109,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "BURN MY SOUL",
+        "startAt": 1697090400000,
+        "aggregateAt": 1697803199000,
+        "closedAt": 1697954399000
+    },
+    {
+        "id": 110,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Stick to your faith",
+        "startAt": 1697954400000,
+        "aggregateAt": 1698580799000,
+        "closedAt": 1698731999000
+    },
+    {
+        "id": 111,
+        "unit": "idol",
+        "eventType": "cheerful_carnival",
+        "name": "その手導くぬくもりは",
+        "startAt": 1698732000000,
+        "aggregateAt": 1699271999000,
+        "closedAt": 1699441199000
+    },
+    {
+        "id": 112,
+        "unit": "school_refusal",
+        "eventType": "world_bloom",
+        "name": "水底に影を探して",
+        "startAt": 1699441200000,
+        "aggregateAt": 1700477999000,
+        "closedAt": 1700632799000
+    },
+    {
+        "id": 113,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "君が主役の物語を",
+        "startAt": 1700632800000,
+        "aggregateAt": 1701172799000,
+        "closedAt": 1701323999000
+    },
+    {
+        "id": 114,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "最高のクランクアップ！",
+        "startAt": 1701324000000,
+        "aggregateAt": 1702036799000,
+        "closedAt": 1702187999000
+    },
+    {
+        "id": 115,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "あっちこっち飼育員体験！",
+        "startAt": 1702188000000,
+        "aggregateAt": 1702900799000,
+        "closedAt": 1703051999000
+    },
+    {
+        "id": 116,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "あの日、奏でた音色を",
+        "startAt": 1703052000000,
+        "aggregateAt": 1703851199000,
+        "closedAt": 1704002399000
+    },
+    {
+        "id": 117,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "変わらぬあたたかさの隣で",
+        "startAt": 1704002400000,
+        "aggregateAt": 1704628799000,
+        "closedAt": 1704797999000
+    },
+    {
+        "id": 118,
+        "unit": "street",
+        "eventType": "world_bloom",
+        "name": "BREAK DOWN THE WALL",
+        "startAt": 1704798000000,
+        "aggregateAt": 1705834799000,
+        "closedAt": 1705989599000
+    },
+    {
+        "id": 119,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "逆光のレンズフレア",
+        "startAt": 1705989600000,
+        "aggregateAt": 1706529599000,
+        "closedAt": 1706698799000
+    },
+    {
+        "id": 120,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Take the Best Shot！",
+        "startAt": 1706698800000,
+        "aggregateAt": 1707393599000,
+        "closedAt": 1707544799000
+    },
+    {
+        "id": 121,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "導く勇気、優しさを胸に",
+        "startAt": 1707544800000,
+        "aggregateAt": 1708257599000,
+        "closedAt": 1708408799000
+    },
+    {
+        "id": 122,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "刻まれた傷は、やがて",
+        "startAt": 1708408800000,
+        "aggregateAt": 1709035199000,
+        "closedAt": 1709186399000
+    },
+    {
+        "id": 123,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "リラックスティータイム",
+        "startAt": 1709186400000,
+        "aggregateAt": 1709726399000,
+        "closedAt": 1709895599000
+    },
+    {
+        "id": 124,
+        "unit": "theme_park",
+        "eventType": "world_bloom",
+        "name": "星を目指して、ヨーソロー！",
+        "startAt": 1709895600000,
+        "aggregateAt": 1710932399000,
+        "closedAt": 1711087199000
+    },
+    {
+        "id": 125,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "The first concerto",
+        "startAt": 1711087200000,
+        "aggregateAt": 1711627199000,
+        "closedAt": 1711778399000
+    },
+    {
+        "id": 126,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Rise as ONE！",
+        "startAt": 1711778400000,
+        "aggregateAt": 1712577599000,
+        "closedAt": 1712728799000
+    },
+    {
+        "id": 127,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "Knowing the Unseen",
+        "startAt": 1712728800000,
+        "aggregateAt": 1713441599000,
+        "closedAt": 1713592799000
+    },
+    {
+        "id": 128,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Parallel Harmonies",
+        "startAt": 1713592800000,
+        "aggregateAt": 1714305599000,
+        "closedAt": 1714456799000
+    },
+    {
+        "id": 129,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Whip the wimp girl!!",
+        "startAt": 1714456800000,
+        "aggregateAt": 1715083199000,
+        "closedAt": 1715252399000
+    },
+    {
+        "id": 130,
+        "unit": "idol",
+        "eventType": "world_bloom",
+        "name": "いつか花咲くステージへ",
+        "startAt": 1715252400000,
+        "aggregateAt": 1716289199000,
+        "closedAt": 1716443999000
+    },
+    {
+        "id": 131,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "perspective for smile",
+        "startAt": 1716444000000,
+        "aggregateAt": 1716983999000,
+        "closedAt": 1717135199000
+    },
+    {
+        "id": 132,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "みんなで配信♡WEDDING LIVE！",
+        "startAt": 1717135200000,
+        "aggregateAt": 1717847999000,
+        "closedAt": 1717999199000
+    },
+    {
+        "id": 133,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "Lead to shine more",
+        "startAt": 1717999200000,
+        "aggregateAt": 1718711999000,
+        "closedAt": 1718863199000
+    },
+    {
+        "id": 134,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "灯を手繰りよせて",
+        "startAt": 1718863200000,
+        "aggregateAt": 1719575999000,
+        "closedAt": 1719727199000
+    },
+    {
+        "id": 135,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "OVER RAD SQUAD!!",
+        "startAt": 1719727200000,
+        "aggregateAt": 1720353599000,
+        "closedAt": 1720504799000
+    },
+    {
+        "id": 136,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "お縄を頂戴！？天馬捕物帳",
+        "startAt": 1720504800000,
+        "aggregateAt": 1721044799000,
+        "closedAt": 1721213999000
+    },
+    {
+        "id": 137,
+        "unit": "light_sound",
+        "eventType": "world_bloom",
+        "name": "あの日見た夜空は、いつかの未来へ",
+        "startAt": 1721214000000,
+        "aggregateAt": 1722250799000,
+        "closedAt": 1722405599000
+    },
+    {
+        "id": 138,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "Chase my IDEAL IDOL！",
+        "startAt": 1722405600000,
+        "aggregateAt": 1723031999000,
+        "closedAt": 1723183199000
+    },
+    {
+        "id": 139,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "鳴らせビューティフルサウンド！",
+        "startAt": 1723183200000,
+        "aggregateAt": 1723723199000,
+        "closedAt": 1723892399000
+    },
+    {
+        "id": 140,
+        "unit": "none",
+        "eventType": "world_bloom",
+        "name": "キミと、セカイの始まりで",
+        "startAt": 1723892400000,
+        "aggregateAt": 1724929199000,
+        "closedAt": 1725083999000
+    },
+    {
+        "id": 141,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "わんだほら～！？な肝だめし！",
+        "startAt": 1725084000000,
+        "aggregateAt": 1725796799000,
+        "closedAt": 1725947999000
+    },
+    {
+        "id": 142,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "鍛えてFLY！Muscle Training！",
+        "startAt": 1725948000000,
+        "aggregateAt": 1726660799000,
+        "closedAt": 1726811999000
+    },
+    {
+        "id": 143,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "This moment with you！",
+        "startAt": 1726812000000,
+        "aggregateAt": 1727524799000,
+        "closedAt": 1727675999000
+    },
+    {
+        "id": 144,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "想いをのせて！Dream Stage",
+        "startAt": 1727676000000,
+        "aggregateAt": 1728475199000,
+        "closedAt": 1728723599000
+    },
+    {
+        "id": 145,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "荊棘の道は何処へ",
+        "startAt": 1728723600000,
+        "aggregateAt": 1729339199000,
+        "closedAt": 1729490399000
+    },
+    {
+        "id": 146,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Rekindle the flame",
+        "startAt": 1729490400000,
+        "aggregateAt": 1730203199000,
+        "closedAt": 1730354399000
+    },
+    {
+        "id": 147,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Happy Enjoy Music！",
+        "startAt": 1730354400000,
+        "aggregateAt": 1731067199000,
+        "closedAt": 1731218399000
+    },
+    {
+        "id": 148,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "また、木の葉の色づく頃に",
+        "startAt": 1731218400000,
+        "aggregateAt": 1731931199000,
+        "closedAt": 1732082399000
+    },
+    {
+        "id": 149,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "The Power Of Regret",
+        "startAt": 1732082400000,
+        "aggregateAt": 1732795199000,
+        "closedAt": 1732946399000
+    },
+    {
+        "id": 150,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "傷だらけの手で、私達は",
+        "startAt": 1732946400000,
+        "aggregateAt": 1733745599000,
+        "closedAt": 1733896799000
+    },
+    {
+        "id": 151,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "Grow glorious glow",
+        "startAt": 1733896800000,
+        "aggregateAt": 1734609599000,
+        "closedAt": 1734760799000
+    },
+    {
+        "id": 152,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Special present for YOU！",
+        "startAt": 1734760800000,
+        "aggregateAt": 1735473599000,
+        "closedAt": 1735624799000
+    },
+    {
+        "id": 153,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Unfading wishing",
+        "startAt": 1735624800000,
+        "aggregateAt": 1736423999000,
+        "closedAt": 1736575199000
+    },
+    {
+        "id": 154,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Time to take off！",
+        "startAt": 1736575200000,
+        "aggregateAt": 1737287999000,
+        "closedAt": 1737439199000
+    },
+    {
+        "id": 155,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Show your shine",
+        "startAt": 1737439200000,
+        "aggregateAt": 1738151999000,
+        "closedAt": 1738303199000
+    },
+    {
+        "id": 156,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "このひと針に想いを込めて",
+        "startAt": 1738303200000,
+        "aggregateAt": 1739015999000,
+        "closedAt": 1739167199000
+    },
+    {
+        "id": 157,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "Rise and Strive",
+        "startAt": 1739167200000,
+        "aggregateAt": 1739879999000,
+        "closedAt": 1740031199000
+    },
+    {
+        "id": 158,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "昔日のRead-aloud",
+        "startAt": 1740031200000,
+        "aggregateAt": 1740571199000,
+        "closedAt": 1740722399000
+    },
+    {
+        "id": 159,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Connect hearts message",
+        "startAt": 1740722400000,
+        "aggregateAt": 1741435199000,
+        "closedAt": 1741586399000
+    },
+    {
+        "id": 160,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "You are my HERO!!",
+        "startAt": 1741586400000,
+        "aggregateAt": 1742299199000,
+        "closedAt": 1742450399000
+    },
+    {
+        "id": 161,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "Unreliable Notes",
+        "startAt": 1742450400000,
+        "aggregateAt": 1743163199000,
+        "closedAt": 1743314399000
+    },
+    {
+        "id": 162,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Find the dream view",
+        "startAt": 1743314400000,
+        "aggregateAt": 1743940799000,
+        "closedAt": 1744109999000
+    },
+    {
+        "id": 163,
+        "unit": "street",
+        "eventType": "world_bloom",
+        "name": "Turning Pain into Drive",
+        "startAt": 1744110000000,
+        "aggregateAt": 1745146799000,
+        "closedAt": 1745301599000
+    },
+    {
+        "id": 164,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "Choices for the future",
+        "startAt": 1745301600000,
+        "aggregateAt": 1745841599000,
+        "closedAt": 1745992799000
+    },
+    {
+        "id": 165,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "そして、針は動き出す",
+        "startAt": 1745992800000,
+        "aggregateAt": 1746532799000,
+        "closedAt": 1746619199000
+    },
+    {
+        "id": 166,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "チアフルカーニバルイベントテストイベント",
+        "startAt": 1746619200000,
+        "aggregateAt": 1746705599000,
+        "closedAt": 1746788399000
+    },
+    {
+        "id": 167,
+        "unit": "theme_park",
+        "eventType": "world_bloom",
+        "name": "Dear my fellows",
+        "startAt": 1746788400000,
+        "aggregateAt": 1747825199000,
+        "closedAt": 1747979999000
+    },
+    {
+        "id": 168,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "Cheer with my Heart!",
+        "startAt": 1747980000000,
+        "aggregateAt": 1748519999000,
+        "closedAt": 1748671199000
+    },
+    {
+        "id": 169,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Aim higher and higher！",
+        "startAt": 1748671200000,
+        "aggregateAt": 1749297599000,
+        "closedAt": 1749466799000
+    },
+    {
+        "id": 170,
+        "unit": "school_refusal",
+        "eventType": "world_bloom",
+        "name": "泡沫に抱かれて",
+        "startAt": 1749466800000,
+        "aggregateAt": 1750503599000,
+        "closedAt": 1750676399000
+    },
+    {
+        "id": 171,
+        "unit": "light_sound",
+        "eventType": "world_bloom",
+        "name": "ordinary,yet special us",
+        "startAt": 1750676400000,
+        "aggregateAt": 1751713199000,
+        "closedAt": 1751875199000
+    },
+    {
+        "id": 172,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "Deeper and deeper",
+        "startAt": 1751875200000,
+        "aggregateAt": 1752407999000,
+        "closedAt": 1752559199000
+    },
+    {
+        "id": 173,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Unsteady, still steady step",
+        "startAt": 1752559200000,
+        "aggregateAt": 1753099199000,
+        "closedAt": 1753250399000
+    },
+    {
+        "id": 174,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "start rolling! stars' crossing",
+        "startAt": 1753250400000,
+        "aggregateAt": 1753790399000,
+        "closedAt": 1753941599000
+    },
+    {
+        "id": 175,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Competitive fire！",
+        "startAt": 1753941600000,
+        "aggregateAt": 1754481599000,
+        "closedAt": 1754650799000
+    },
+    {
+        "id": 176,
+        "unit": "idol",
+        "eventType": "world_bloom",
+        "name": "All ways Jump! with you",
+        "startAt": 1754650800000,
+        "aggregateAt": 1755687599000,
+        "closedAt": 1755842399000
+    },
+    {
+        "id": 177,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "ほどけぬ明日に手を伸ばして",
+        "startAt": 1755842400000,
+        "aggregateAt": 1756382399000,
+        "closedAt": 1756533599000
+    },
+    {
+        "id": 178,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "Deep Dark For Light",
+        "startAt": 1756533600000,
+        "aggregateAt": 1756987199000,
+        "closedAt": 1757156399000
+    },
+    {
+        "id": 179,
+        "unit": "none",
+        "eventType": "world_bloom",
+        "name": "Link the Beats！",
+        "startAt": 1757156400000,
+        "aggregateAt": 1758193199000,
+        "closedAt": 1758347999000
+    },
+    {
+        "id": 180,
+        "unit": "none",
+        "eventType": "world_bloom",
+        "name": "Wishes in Bloom！",
+        "startAt": 1758798000000,
+        "aggregateAt": 1759057199000,
+        "closedAt": 1759211999000
+    },
+    {
+        "id": 181,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Our Golden Days",
+        "startAt": 1759212000000,
+        "aggregateAt": 1760011199000,
+        "closedAt": 1760162399000
+    }
+]

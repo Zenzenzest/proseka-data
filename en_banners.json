@@ -7285,7 +7285,7 @@
 {
  "id": 593,
  "name": "Haruka Kiritani Happy Birthday 2026 Gacha",
- "cards": [1260, 1010, 767, 516, 295],
+ "cards": [1260],
  "characters": [6],
  "keywords": [],
  "sekai_id": 836,
@@ -7295,7 +7295,7 @@
  "end": 1791442799000
 },{
  "id": 594,
- "name": "[桐谷遥]HAPPY BIRTHDAYメモリーズ Gacha",
+ "name": "Haruka Kiritani Happy Birthday Memories Gacha",
  "cards": [1010, 767, 516, 295],
  "start": 1759244400000,
  "end": 1759849199000,
@@ -7307,7 +7307,7 @@
 },
 {
  "id": 595,
- "name": "JP 5th Annivesary Bloom Festival Gacha Dream Pick",
+ "name": "JP 5th Anniversary Bloom Festival Gacha Dream Pick",
  "cards": [1252, 1253, 1254, 1255, 1256, 1257],
  "characters": [],
  "keywords": [],

@@ -1,10 +1,12 @@
 import json
 import requests
+import re
 import pytz
 from datetime import datetime, timedelta
 from typing import Dict, List
 from .common_transform import get_pst_pdt_status
 from .mappings import EVENT_UNIT_MAPPINGS
+
 
 def fetch_json_from_url(url: str) -> List[Dict]:
     """Fetch JSON data from URL"""
@@ -13,73 +15,144 @@ def fetch_json_from_url(url: str) -> List[Dict]:
     return response.json()
 
 
-def update_en_events_from_en_source(en_events_data: List[Dict], existing_en_events: List[Dict]) -> List[Dict]:
-    """Update EN events from EN source data"""
+def update_event_ids(transformed_diff: List[Dict], banners: List[Dict]) -> List[Dict]:
 
-    en_event_lookup = {event.get("id"): event for event in existing_en_events}
-    
-    # only process ID >= 140
-    events_to_process = [event for event in en_events_data if event.get("id", 0) >= 140]
-    
-    updated_count = 0
-    updated_event_ids = []
-    result_events = existing_en_events.copy()
- 
-    for en_source_event in events_to_process:
-        event_id = en_source_event.get("id")
-   
-        if event_id in en_event_lookup:
-            for i, event in enumerate(result_events):
-                if event.get("id") == event_id:
-                    original_event = event.copy()
-                    
-                    # Update fields if they're different
-                    en_name = en_source_event.get("name", "")
-                    en_start = en_source_event.get("startAt", 0)
-                    en_end = en_source_event.get("aggregateAt", 0)
-                    en_close = en_source_event.get("closedAt", 0)
-                    
-                    if result_events[i].get("name") != en_name:
-                        result_events[i]["name"] = en_name
-                    
-                    if result_events[i].get("start") != en_start:
-                        result_events[i]["start"] = en_start
-                    
-                    if result_events[i].get("end") != en_end:
-                        result_events[i]["end"] = en_end
-                    
-                    if result_events[i].get("close") != en_close:
-                        result_events[i]["close"] = en_close
-                    
-                    if result_events[i] != original_event:
-                        updated_count += 1
-                        updated_event_ids.append(event_id)
+    event_sets = []
+    for event in transformed_diff:
+        cards = set(event.get('cards', []))
+        event_sets.append((event, cards))
+
+    for banner in reversed(banners):
+        banner_cards = set(banner.get("cards", []))
+
+        for ev, event_cards in event_sets:
+            common_cards = len(banner_cards & event_cards)
+            if common_cards >= 3:
+                banner["event_id"] = ev.get("id")
+                banner["keywords"] = ev.get("keywords")
+
+    return banners
+
+
+def update_en_events(en_diff: List[Dict], en_events: List[Dict]) -> List[Dict]:
+    lookup = {ev['id']: ev for ev in en_diff}
+
+    for event in en_events:
+        if event["id"] in lookup:
+            print(f"Processing Event: {event['id']}")
+            for key, value in lookup[event["id"]].items():
+                if key == "name":
+                    event["name"] = value
+                elif key == "startAt":
+                    event["start"] = value
+                elif key == "aggregateAt":
+                    event["end"] = value
+                elif key == "closedAt":
+                    event["close"] = value
+
+    return en_events
+
+
+def transform_events(jp_diff: List[Dict], events: List[Dict], jp_cards: List[Dict], mode: str) -> List[Dict]:
+    event_cards = fetch_json_from_url(
+        "https://raw.githubusercontent.com/Sekai-World/sekai-master-db-diff/refs/heads/main/eventCards.json")
+
+    events_diff = []
+
+    for event in jp_diff:
+        id = event.get("id")
+        name = event.get("name")
+        unit = EVENT_UNIT_MAPPINGS.get(event.get("unit"))
+        cards = get_event_cards(id, event_cards)
+        start = event.get("startAt")
+        end = event.get("aggregateAt")
+        close = event.get("closedAt")
+        event_type = event.get("eventType")
+        keywords = []
+
+        new_event = {
+            "id": id,
+            "name": name,
+            "unit": unit,
+            "cards": cards,
+            "start": start,
+            "end": end,
+            "close": close,
+            "event_type": event_type,
+            "keywords": keywords
+        }
+
+        # Auto increment from the last focus event
+        # Tsukasa 6th Focus Event -> Tsukasa 7th Focus Event
+        # Won't work if there's wl3 event. too lazy to add a fallback
+        if unit != "mixed":
+
+            first_card_id = cards[0]
+            card_data = next(
+                (card for card in jp_cards if card["id"] == first_card_id), None)
+            character = card_data.get("character", "")
+            parts = character.split(" ")
+            first_name = parts[1]
+            # Find the previous focus event
+
+            for ev in reversed(events):
+                if first_name in ev.get("type", ""):
+                    print(ev["type"])
+                    focus = increment_focus_event_type(ev["type"])
+                    kw = ev.get("keywords")
+                    new_event["type"] = focus
+                    new_event["keywords"] = increment_keywords(kw)
                     break
-    
-    if updated_count > 0:
-        print(f"Updated {updated_count} EN events from EN source")
-        print(f"Updated event IDs: {updated_event_ids}")
-    
-    return result_events
+
+        elif unit == "mixed":
+            new_event["type"] = "Mixed Event"
+
+        if mode == "jp":
+            events_diff.append(new_event)
+
+        elif mode == "en":
+            new_event["start"] = adjust_time_for_en(start)
+            new_event["end"] = adjust_time_for_en(end)
+            new_event["close"] = adjust_time_for_en(close)
+            events_diff.append(new_event)
+
+    return events_diff
 
 
 def adjust_time_for_en(jp_time_ms: int) -> int:
     """Add 1 year and timezone hours to JP time for EN timing"""
     if jp_time_ms == 0:
         return 0
-    
-
     jp_dt = datetime.fromtimestamp(jp_time_ms / 1000, tz=pytz.UTC)
-    
 
     en_dt = jp_dt.replace(year=jp_dt.year + 1)
-    
 
     additional_hours = 16 if get_pst_pdt_status() == "PDT" else 17
     en_dt = en_dt + timedelta(hours=additional_hours)
-    
 
     return int(en_dt.timestamp() * 1000)
+
+
+def increment_focus_event_type(text):
+    def increment_match(match):
+        number = int(match.group(1))
+        return f"{number + 1}{match.group(2)}"
+
+    return re.sub(r'(\d+)(st|nd|rd|th)', increment_match, text)
+
+
+def increment_keywords(keywords: List[str]) -> List[str]:
+    updated = []
+    for word in keywords:
+        match = re.match(r"([a-zA-Z]+)(\d+)$", word)
+        if match:
+            name, num = match.groups()
+            new_word = f"{name}{int(num) + 1}"
+            updated.append(new_word)
+        else:
+            updated.append(word)
+    return updated
+
 
 def get_event_cards(event_id: int, event_cards_data: List[Dict]) -> List[int]:
     """Get card IDs for an event from eventCards data"""
@@ -91,77 +164,4 @@ def get_event_cards(event_id: int, event_cards_data: List[Dict]) -> List[int]:
                 card_ids.append(card_id)
     return sorted(card_ids)
 
-def transform_jp_events(jp_events_data: List[Dict], existing_jp_events: List[Dict], event_cards_data: List[Dict]) -> List[Dict]:
-    """Transform JP events data to our format"""
-    result = []
-    
-  
-    existing_event_lookup = {event.get("id"): event for event in existing_jp_events}
-    
 
-    for jp_event in jp_events_data:
-        event_id = jp_event.get("id")
-        
-        # Skip if event already exists
-        if event_id in existing_event_lookup:
-            continue
-            
-
-        name = jp_event.get("name", "")
-        start_time = jp_event.get("startAt", 0)
-        end_time = jp_event.get("aggregateAt", 0)
-        close_time = jp_event.get("closedAt", 0)
-        unit = EVENT_UNIT_MAPPINGS.get(jp_event.get("unit", ""), "")
-        event_type = jp_event.get("eventType", "")
-        cards = get_event_cards(event_id, event_cards_data)
-        
-        # JP event object
-        jp_event_obj = {
-            "id": event_id,
-            "name": name,
-            "start": start_time,
-            "end": end_time,
-            "close": close_time,
-            "unit": unit,
-            "cards": cards,
-            "keywords": [],
-            "event_type": event_type,
-            "type": ""
-        }
-        
-        result.append(jp_event_obj)
-    
-    return result
-
-def create_en_event_from_jp(jp_event: Dict, event_cards_data: List[Dict]) -> Dict:
-    """Create EN event from JP event with timezone-adjusted timing"""
-
-    event_id = jp_event.get("id")
-    name = jp_event.get("name", "")
-    jp_start_time = jp_event.get("start")
-    jp_end_time = jp_event.get("end")
-    jp_close_time = jp_event.get("close")
-    unit = jp_event.get("unit", "")
-    event_type = jp_event.get("event_type", "")
-    cards = jp_event.get("cards", [])
-    
-    # Adjust time for EN
-    en_start_time = adjust_time_for_en(jp_start_time)
-    en_end_time = adjust_time_for_en(jp_end_time)
-    en_close_time = adjust_time_for_en(jp_close_time)
-    
-    # EN event object 
-    en_event = {
-        "id": event_id,
-        "name": name,
-        "start": en_start_time,
-        "end": en_end_time,
-        "close": en_close_time,
-        "unit": unit,
-        "cards": cards,
-        "keywords": [],
-        "event_type": event_type,
-        "type": ""
-    }
-    
-    return en_event

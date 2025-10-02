@@ -55,6 +55,35 @@ RARITY_MAPPINGS = {
 }
 
 
+JP_NAME_MAPPINGS = {
+    "星乃一歌": "Ichika Hoshino",
+    "天馬咲希": "Saki Tenma",
+    "望月穂波": "Honami Mochizuki",
+    "日野森志歩": "Shiho Hinomori",
+    "花里みのり": "Minori Hanasato",
+    "桐谷遥": "Haruka Kiritani",
+    "桃井愛莉": "Airi Momoi",
+    "日野森雫": "Shizuku Hinomori",
+    "小豆沢こはね": "Kohane Azusawa",
+    "白石杏": "An Shiraishi",
+    "東雲彰人": "Akito Shinonome",
+    "青柳冬弥": "Toya Aoyagi",
+    "天馬司": "Tsukasa Tenma",
+    "鳳えむ": "Emu Otori",
+    "草薙寧々": "Nene Kusanagi",
+    "神代類": "Rui Kamishiro",
+    "宵崎奏": "Kanade Yoisaki",
+    "朝比奈まふゆ": "Mafuyu Asahina",
+    "東雲絵名": "Ena Shinonome",
+    "暁山瑞希": "Mizuki Akiyama",
+    "初音ミク": "Hatsune Miku",
+    "鏡音リン": "Kagamine Rin",
+    "鏡音レン": "Kagamine Len",
+    "巡音ルカ": "Megurine Luka",
+    "MEIKO": "MEIKO",
+    "KAITO": "KAITO"
+}
+
 CARD_UNIT_MAPPINGS = {
     "Virtual Singers": [
         "Hatsune Miku",
@@ -106,8 +135,6 @@ SUB_UNIT_MAPPINGS = {
 }
 
 
-
-
 UNIT_PREMIUM = [
     "バーチャル・シンガー",
     "Leo/need",
@@ -120,7 +147,6 @@ UNIT_PREMIUM = [
     "VIRTUAL SINGER",
     "Nightcord at 25:00"
 ]
-
 
 
 EVENT_UNIT_MAPPINGS = {

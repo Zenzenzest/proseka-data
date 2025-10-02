@@ -1,0 +1,1289 @@
+[
+    {
+        "id": 1,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "First Star After the Rain",
+        "startAt": 1639004400000,
+        "aggregateAt": 1639544399000,
+        "closedAt": 1639695599000
+    },
+    {
+        "id": 2,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Imprisoned Marionette",
+        "startAt": 1639695600000,
+        "aggregateAt": 1640235599000,
+        "closedAt": 1640386799000
+    },
+    {
+        "id": 3,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "It's On! Wonder Halloween!",
+        "startAt": 1640386800000,
+        "aggregateAt": 1640926799000,
+        "closedAt": 1641077999000
+    },
+    {
+        "id": 4,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Run! Sports Festival! Committee Rush",
+        "startAt": 1641769200000,
+        "aggregateAt": 1642309199000,
+        "closedAt": 1642460399000
+    },
+    {
+        "id": 5,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Time to RE:START!",
+        "startAt": 1642460400000,
+        "aggregateAt": 1643000399000,
+        "closedAt": 1643151599000
+    },
+    {
+        "id": 6,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Singing in Sync",
+        "startAt": 1641078000000,
+        "aggregateAt": 1641617999000,
+        "closedAt": 1641769199000
+    },
+    {
+        "id": 7,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "KAMIYAMA HIGH FESTIVAL!",
+        "startAt": 1643151600000,
+        "aggregateAt": 1643691599000,
+        "closedAt": 1643842799000
+    },
+    {
+        "id": 8,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "On This Holy Night, I Sing",
+        "startAt": 1643842800000,
+        "aggregateAt": 1644382799000,
+        "closedAt": 1644533999000
+    },
+    {
+        "id": 9,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "SEKAI Happy New Year!",
+        "startAt": 1644534000000,
+        "aggregateAt": 1645073999000,
+        "closedAt": 1645225199000
+    },
+    {
+        "id": 10,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Don't Let Doubts Hold You Back",
+        "startAt": 1645225200000,
+        "aggregateAt": 1645765199000,
+        "closedAt": 1645916399000
+    },
+    {
+        "id": 11,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "My Color!",
+        "startAt": 1645916400000,
+        "aggregateAt": 1646456399000,
+        "closedAt": 1646607599000
+    },
+    {
+        "id": 12,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Nocturne Interlude",
+        "startAt": 1646607600000,
+        "aggregateAt": 1647147599000,
+        "closedAt": 1647295198000
+    },
+    {
+        "id": 13,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Musical Twilight Parade",
+        "startAt": 1647295200000,
+        "aggregateAt": 1647835199000,
+        "closedAt": 1647986399000
+    },
+    {
+        "id": 14,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Insatiable Pale Color",
+        "startAt": 1647986400000,
+        "aggregateAt": 1648526399000,
+        "closedAt": 1648677599000
+    },
+    {
+        "id": 15,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Smile of a Dreamer",
+        "startAt": 1648677600000,
+        "aggregateAt": 1649217599000,
+        "closedAt": 1649368799000
+    },
+    {
+        "id": 16,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Doll Festival at the Tenma's",
+        "startAt": 1649368800000,
+        "aggregateAt": 1649908799000,
+        "closedAt": 1650059999000
+    },
+    {
+        "id": 17,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Hear Me! Hopeful Show♪",
+        "startAt": 1650060000000,
+        "aggregateAt": 1650599999000,
+        "closedAt": 1650751199000
+    },
+    {
+        "id": 18,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Singing Among the Cherry Blossoms",
+        "startAt": 1650751200000,
+        "aggregateAt": 1651291199000,
+        "closedAt": 1651442399000
+    },
+    {
+        "id": 19,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Secret Distance",
+        "startAt": 1651442400000,
+        "aggregateAt": 1651982399000,
+        "closedAt": 1652133599000
+    },
+    {
+        "id": 20,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Resonating with you",
+        "startAt": 1652133600000,
+        "aggregateAt": 1652673599000,
+        "closedAt": 1652824799000
+    },
+    {
+        "id": 21,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "STRAY BAD DOG",
+        "startAt": 1652824800000,
+        "aggregateAt": 1653364799000,
+        "closedAt": 1653515999000
+    },
+    {
+        "id": 22,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "What's on your mind? Exciting Picnic!",
+        "startAt": 1653516000000,
+        "aggregateAt": 1654055999000,
+        "closedAt": 1654207199000
+    },
+    {
+        "id": 23,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "You deserve it! Break Time!",
+        "startAt": 1654207200000,
+        "aggregateAt": 1654747199000,
+        "closedAt": 1654898399000
+    },
+    {
+        "id": 24,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "An Ode for the Pure of Heart",
+        "startAt": 1654898400000,
+        "aggregateAt": 1655438399000,
+        "closedAt": 1655589599000
+    },
+    {
+        "id": 25,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Wonder Magical Showtime!",
+        "startAt": 1655589600000,
+        "aggregateAt": 1656129599000,
+        "closedAt": 1656280799000
+    },
+    {
+        "id": 26,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Carnation Recollection",
+        "startAt": 1656280800000,
+        "aggregateAt": 1656820799000,
+        "closedAt": 1656971999000
+    },
+    {
+        "id": 27,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Unnamed Harmony",
+        "startAt": 1656972000000,
+        "aggregateAt": 1657511999000,
+        "closedAt": 1657663199000
+    },
+    {
+        "id": 28,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Awakening Beat",
+        "startAt": 1657663200000,
+        "aggregateAt": 1658289599000,
+        "closedAt": 1658440799000
+    },
+    {
+        "id": 29,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "The Sounds of a Summer Festival!",
+        "startAt": 1658440800000,
+        "aggregateAt": 1659239999000,
+        "closedAt": 1659391199000
+    },
+    {
+        "id": 30,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "The BEST Summer Ever!",
+        "startAt": 1659391200000,
+        "aggregateAt": 1660017599000,
+        "closedAt": 1660168799000
+    },
+    {
+        "id": 31,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Happy Lovely Everyday!",
+        "startAt": 1660168800000,
+        "aggregateAt": 1660881599000,
+        "closedAt": 1661032799000
+    },
+    {
+        "id": 32,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Mermaid Admiration",
+        "startAt": 1661032800000,
+        "aggregateAt": 1661745599000,
+        "closedAt": 1661896799000
+    },
+    {
+        "id": 33,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "The Moon Rabbit & Us",
+        "startAt": 1661896800000,
+        "aggregateAt": 1662609599000,
+        "closedAt": 1662760799000
+    },
+    {
+        "id": 34,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "A Bright Future!!",
+        "startAt": 1662760800000,
+        "aggregateAt": 1663559999000,
+        "closedAt": 1663711199000
+    },
+    {
+        "id": 35,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Mirage of Light",
+        "startAt": 1663711200000,
+        "aggregateAt": 1664510399000,
+        "closedAt": 1664661599000
+    },
+    {
+        "id": 36,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Scramble Fan Festival!",
+        "startAt": 1664661600000,
+        "aggregateAt": 1665633599000,
+        "closedAt": 1665784799000
+    },
+    {
+        "id": 37,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Bout for Beside You",
+        "startAt": 1665784800000,
+        "aggregateAt": 1666756799000,
+        "closedAt": 1666994398000
+    },
+    {
+        "id": 39,
+        "unit": "school_refusal",
+        "eventType": "cheerful_carnival",
+        "name": "What lies behind. What lies ahead.",
+        "startAt": 1666994400000,
+        "aggregateAt": 1667797199000,
+        "closedAt": 1667948399000
+    },
+    {
+        "id": 40,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Putting Feelings Into Words",
+        "startAt": 1667948400000,
+        "aggregateAt": 1668661199000,
+        "closedAt": 1668812399000
+    },
+    {
+        "id": 41,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Time to hang out♪",
+        "startAt": 1668812400000,
+        "aggregateAt": 1669611599000,
+        "closedAt": 1669762799000
+    },
+    {
+        "id": 42,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "The Warmth of Intersecting Melodies",
+        "startAt": 1669762800000,
+        "aggregateAt": 1670561999000,
+        "closedAt": 1670713199000
+    },
+    {
+        "id": 43,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "MORE MORE Making Christmas",
+        "startAt": 1670713200000,
+        "aggregateAt": 1671425999000,
+        "closedAt": 1671577199000
+    },
+    {
+        "id": 44,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Same Dreams, Same Colors",
+        "startAt": 1671577200000,
+        "aggregateAt": 1672376399000,
+        "closedAt": 1672527599000
+    },
+    {
+        "id": 45,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "The Tomorrow We Hope For",
+        "startAt": 1672527600000,
+        "aggregateAt": 1673413199000,
+        "closedAt": 1673564399000
+    },
+    {
+        "id": 46,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "Popping in My Heart!",
+        "startAt": 1673564400000,
+        "aggregateAt": 1674190799000,
+        "closedAt": 1674341999000
+    },
+    {
+        "id": 47,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "Someday, From the Depths of Despair",
+        "startAt": 1674342000000,
+        "aggregateAt": 1675054799000,
+        "closedAt": 1675205999000
+    },
+    {
+        "id": 48,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Secret Operation Valentine's Day",
+        "startAt": 1675206000000,
+        "aggregateAt": 1675832399000,
+        "closedAt": 1675983599000
+    },
+    {
+        "id": 49,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "The Legend Still Vivid",
+        "startAt": 1675983600000,
+        "aggregateAt": 1676609999000,
+        "closedAt": 1676761199000
+    },
+    {
+        "id": 50,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "That day, the Sky was Far Away",
+        "startAt": 1676761200000,
+        "aggregateAt": 1677473999000,
+        "closedAt": 1677625199000
+    },
+    {
+        "id": 51,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "A Gentleman Thief's Thrilling White Day?!",
+        "startAt": 1677625200000,
+        "aggregateAt": 1678424399000,
+        "closedAt": 1678575599000
+    },
+    {
+        "id": 52,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "Cast a Spell on You",
+        "startAt": 1678575600000,
+        "aggregateAt": 1679198399000,
+        "closedAt": 1679349599000
+    },
+    {
+        "id": 53,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "On This Blank Canvas, I Paint",
+        "startAt": 1679349600000,
+        "aggregateAt": 1680062399000,
+        "closedAt": 1680213599000
+    },
+    {
+        "id": 54,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Connected Through SEKAI's Cherry Blossoms",
+        "startAt": 1680213600000,
+        "aggregateAt": 1681099199000,
+        "closedAt": 1681250399000
+    },
+    {
+        "id": 55,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "On the Stage of Dazzling Light",
+        "startAt": 1681250400000,
+        "aggregateAt": 1681963199000,
+        "closedAt": 1682114399000
+    },
+    {
+        "id": 56,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Live with Memories",
+        "startAt": 1682114400000,
+        "aggregateAt": 1682740799000,
+        "closedAt": 1682891999000
+    },
+    {
+        "id": 57,
+        "unit": "idol",
+        "eventType": "cheerful_carnival",
+        "name": "Tied By Painful Hope",
+        "startAt": 1682892000000,
+        "aggregateAt": 1683604799000,
+        "closedAt": 1683755999000
+    },
+    {
+        "id": 58,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "The Climax! Kamiyama Cheer Squad!",
+        "startAt": 1683756000000,
+        "aggregateAt": 1684468799000,
+        "closedAt": 1684619999000
+    },
+    {
+        "id": 59,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "THE POWER OF UNITY",
+        "startAt": 1684620000000,
+        "aggregateAt": 1685419199000,
+        "closedAt": 1685570399000
+    },
+    {
+        "id": 60,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Wishing to the Blue Sky for Your Happiness!",
+        "startAt": 1685570400000,
+        "aggregateAt": 1686283199000,
+        "closedAt": 1686434399000
+    },
+    {
+        "id": 61,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "What Lies Beyond Guiding a Lost Child",
+        "startAt": 1686434400000,
+        "aggregateAt": 1687147199000,
+        "closedAt": 1687298399000
+    },
+    {
+        "id": 62,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "Desperate Times?! Island Panic!",
+        "startAt": 1687298400000,
+        "aggregateAt": 1688011199000,
+        "closedAt": 1688162399000
+    },
+    {
+        "id": 63,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Let's Enjoy Together! SpoJoy Park",
+        "startAt": 1688162400000,
+        "aggregateAt": 1688961599000,
+        "closedAt": 1689112799000
+    },
+    {
+        "id": 64,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "The Vivid Old Tale",
+        "startAt": 1689112800000,
+        "aggregateAt": 1689825599000,
+        "closedAt": 1689976799000
+    },
+    {
+        "id": 65,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "No seek No find",
+        "startAt": 1689976800000,
+        "aggregateAt": 1690689599000,
+        "closedAt": 1690840799000
+    },
+    {
+        "id": 66,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "close game/OFFLINE",
+        "startAt": 1690840800000,
+        "aggregateAt": 1691553599000,
+        "closedAt": 1691704799000
+    },
+    {
+        "id": 67,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "Chasing The Sparkle Beyond the Blue Sky",
+        "startAt": 1691704800000,
+        "aggregateAt": 1692417599000,
+        "closedAt": 1692568799000
+    },
+    {
+        "id": 68,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "And Now, I Wear This Ribbon",
+        "startAt": 1692568800000,
+        "aggregateAt": 1693367999000,
+        "closedAt": 1693519199000
+    },
+    {
+        "id": 69,
+        "unit": "light_sound",
+        "eventType": "cheerful_carnival",
+        "name": "Don't lose faith!",
+        "startAt": 1693519200000,
+        "aggregateAt": 1694231999000,
+        "closedAt": 1694383199000
+    },
+    {
+        "id": 70,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Paint What I Love♪ Rainbow Canvas",
+        "startAt": 1694383200000,
+        "aggregateAt": 1695095999000,
+        "closedAt": 1695247199000
+    },
+    {
+        "id": 71,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Walk on and on",
+        "startAt": 1695247200000,
+        "aggregateAt": 1695959999000,
+        "closedAt": 1696111199000
+    },
+    {
+        "id": 72,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "At This Festival Bathed in Twilight",
+        "startAt": 1696111200000,
+        "aggregateAt": 1696910399000,
+        "closedAt": 1697061599000
+    },
+    {
+        "id": 73,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "Dear Me, From Back Then",
+        "startAt": 1697061600000,
+        "aggregateAt": 1697774399000,
+        "closedAt": 1697925599000
+    },
+    {
+        "id": 74,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "A Sad Farewell at the Curtain Call",
+        "startAt": 1697925600000,
+        "aggregateAt": 1698638399000,
+        "closedAt": 1698789599000
+    },
+    {
+        "id": 75,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Screaming?! Welcome to the Forest of Wolves!",
+        "startAt": 1698789600000,
+        "aggregateAt": 1699505999000,
+        "closedAt": 1699657199000
+    },
+    {
+        "id": 76,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Echo My Melody",
+        "startAt": 1699657200000,
+        "aggregateAt": 1700369999000,
+        "closedAt": 1700521199000
+    },
+    {
+        "id": 77,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "Hope Will Someday Go Beyond the Morning",
+        "startAt": 1700521200000,
+        "aggregateAt": 1701233999000,
+        "closedAt": 1701385199000
+    },
+    {
+        "id": 78,
+        "unit": "idol",
+        "eventType": "cheerful_carnival",
+        "name": "Beyond The Dream of That Day",
+        "startAt": 1701385200000,
+        "aggregateAt": 1702184399000,
+        "closedAt": 1702335599000
+    },
+    {
+        "id": 79,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Find A Way Out",
+        "startAt": 1702335600000,
+        "aggregateAt": 1703048399000,
+        "closedAt": 1703199599000
+    },
+    {
+        "id": 80,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Raise Your Bow in a Snow-White World",
+        "startAt": 1703199600000,
+        "aggregateAt": 1703912399000,
+        "closedAt": 1704063599000
+    },
+    {
+        "id": 81,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Happy New Year! Lion Dance Robot's New Year's Show!",
+        "startAt": 1704063600000,
+        "aggregateAt": 1704776399000,
+        "closedAt": 1704927599000
+    },
+    {
+        "id": 82,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "To The Gleaming Stars Halfway Through a Dream",
+        "startAt": 1704927600000,
+        "aggregateAt": 1705726799000,
+        "closedAt": 1705877999000
+    },
+    {
+        "id": 83,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Little Bravers!",
+        "startAt": 1705878000000,
+        "aggregateAt": 1706590799000,
+        "closedAt": 1706741999000
+    },
+    {
+        "id": 84,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Memories That Come With The Scent of Candles",
+        "startAt": 1706742000000,
+        "aggregateAt": 1707454799000,
+        "closedAt": 1707605999000
+    },
+    {
+        "id": 85,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "At The End of The Unraveled Thread",
+        "startAt": 1707606000000,
+        "aggregateAt": 1708232399000,
+        "closedAt": 1708383599000
+    },
+    {
+        "id": 86,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Kick It Up a Notch",
+        "startAt": 1708383600000,
+        "aggregateAt": 1709096399000,
+        "closedAt": 1709247599000
+    },
+    {
+        "id": 87,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Never Give Up Cooking!",
+        "startAt": 1709247600000,
+        "aggregateAt": 1710046799000,
+        "closedAt": 1710194399000
+    },
+    {
+        "id": 88,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "The Phoenix in the Distant Sky",
+        "startAt": 1710194400000,
+        "aggregateAt": 1710907199000,
+        "closedAt": 1711058399000
+    },
+    {
+        "id": 89,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "Immiscible Discord",
+        "startAt": 1711058400000,
+        "aggregateAt": 1711684799000,
+        "closedAt": 1711835999000
+    },
+    {
+        "id": 90,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "In This Singing City",
+        "startAt": 1711836000000,
+        "aggregateAt": 1712721599000,
+        "closedAt": 1712872799000
+    },
+    {
+        "id": 91,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Get Over It",
+        "startAt": 1712872800000,
+        "aggregateAt": 1713585599000,
+        "closedAt": 1713736799000
+    },
+    {
+        "id": 92,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "Friendship Rebuilt",
+        "startAt": 1713736800000,
+        "aggregateAt": 1714363199000,
+        "closedAt": 1714514399000
+    },
+    {
+        "id": 93,
+        "unit": "school_refusal",
+        "eventType": "cheerful_carnival",
+        "name": "We Escape to Survive",
+        "startAt": 1714514400000,
+        "aggregateAt": 1715313599000,
+        "closedAt": 1715464799000
+    },
+    {
+        "id": 94,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "One Small Trip Before a Big Journey",
+        "startAt": 1715464800000,
+        "aggregateAt": 1716091199000,
+        "closedAt": 1716242399000
+    },
+    {
+        "id": 95,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "The Song of a Canary in Crisis",
+        "startAt": 1716242400000,
+        "aggregateAt": 1717041599000,
+        "closedAt": 1717192799000
+    },
+    {
+        "id": 96,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "To You, My Caring Companion",
+        "startAt": 1717192800000,
+        "aggregateAt": 1717905599000,
+        "closedAt": 1718056799000
+    },
+    {
+        "id": 97,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Light Up the Fire",
+        "startAt": 1718056800000,
+        "aggregateAt": 1718769599000,
+        "closedAt": 1718920799000
+    },
+    {
+        "id": 98,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "Step by Step!",
+        "startAt": 1718920800000,
+        "aggregateAt": 1719633599000,
+        "closedAt": 1719784799000
+    },
+    {
+        "id": 99,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "An Unmissable Spirited Affair",
+        "startAt": 1719784800000,
+        "aggregateAt": 1720583999000,
+        "closedAt": 1720735199000
+    },
+    {
+        "id": 100,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "Farewell, My Mask",
+        "startAt": 1720735200000,
+        "aggregateAt": 1721447999000,
+        "closedAt": 1721599199000
+    },
+    {
+        "id": 101,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Our Constellation of Song",
+        "startAt": 1721599200000,
+        "aggregateAt": 1722311999000,
+        "closedAt": 1722463199000
+    },
+    {
+        "id": 102,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Bustling Cafe ●REC!",
+        "startAt": 1722463200000,
+        "aggregateAt": 1723175999000,
+        "closedAt": 1723327199000
+    },
+    {
+        "id": 103,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "On Your Feet",
+        "startAt": 1723327200000,
+        "aggregateAt": 1724126399000,
+        "closedAt": 1724277599000
+    },
+    {
+        "id": 104,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "Our Happy Ending",
+        "startAt": 1724277600000,
+        "aggregateAt": 1724990399000,
+        "closedAt": 1725141599000
+    },
+    {
+        "id": 105,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Let SEKAI Hear Your Song!",
+        "startAt": 1725141600000,
+        "aggregateAt": 1725854399000,
+        "closedAt": 1726005599000
+    },
+    {
+        "id": 106,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Our Precious Memories",
+        "startAt": 1726005600000,
+        "aggregateAt": 1726718399000,
+        "closedAt": 1726869599000
+    },
+    {
+        "id": 107,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Let's Study Hard!",
+        "startAt": 1726869600000,
+        "aggregateAt": 1727582399000,
+        "closedAt": 1727733599000
+    },
+    {
+        "id": 108,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Hello to a New Day!",
+        "startAt": 1727733600000,
+        "aggregateAt": 1728619199000,
+        "closedAt": 1728770399000
+    },
+    {
+        "id": 109,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Burn My Soul",
+        "startAt": 1728770400000,
+        "aggregateAt": 1729483199000,
+        "closedAt": 1729634399000
+    },
+    {
+        "id": 110,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Stick to Your Faith",
+        "startAt": 1729634400000,
+        "aggregateAt": 1730260799000,
+        "closedAt": 1730411999000
+    },
+    {
+        "id": 111,
+        "unit": "idol",
+        "eventType": "cheerful_carnival",
+        "name": "The Warmth of a Guiding Hand",
+        "startAt": 1730412000000,
+        "aggregateAt": 1730955599000,
+        "closedAt": 1731124799000
+    },
+    {
+        "id": 112,
+        "unit": "school_refusal",
+        "eventType": "world_bloom",
+        "name": "Searching for Sunken Shadows",
+        "startAt": 1731124800000,
+        "aggregateAt": 1732161599000,
+        "closedAt": 1732316399000
+    },
+    {
+        "id": 113,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "Star of Your Own Story",
+        "startAt": 1732316400000,
+        "aggregateAt": 1732856399000,
+        "closedAt": 1733007599000
+    },
+    {
+        "id": 114,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Picture Perfect!",
+        "startAt": 1733007600000,
+        "aggregateAt": 1733720399000,
+        "closedAt": 1733871599000
+    },
+    {
+        "id": 115,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "This Way! That Way! Zookeeper Day",
+        "startAt": 1733871600000,
+        "aggregateAt": 1734584399000,
+        "closedAt": 1734735599000
+    },
+    {
+        "id": 116,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "The Way I Played That Day",
+        "startAt": 1734735600000,
+        "aggregateAt": 1735534799000,
+        "closedAt": 1735685999000
+    },
+    {
+        "id": 117,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Beside Unchanging Warmth",
+        "startAt": 1735686000000,
+        "aggregateAt": 1736312399000,
+        "closedAt": 1736481599000
+    },
+    {
+        "id": 118,
+        "unit": "street",
+        "eventType": "world_bloom",
+        "name": "Break Down the Wall",
+        "startAt": 1736481600000,
+        "aggregateAt": 1737518399000,
+        "closedAt": 1737673199000
+    },
+    {
+        "id": 119,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "Backlight, Lens Flare",
+        "startAt": 1737673200000,
+        "aggregateAt": 1738213199000,
+        "closedAt": 1738364399000
+    },
+    {
+        "id": 120,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Take the Best Shot!",
+        "startAt": 1738364400000,
+        "aggregateAt": 1739077199000,
+        "closedAt": 1739228399000
+    },
+    {
+        "id": 121,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Lead With Courage and Kindness",
+        "startAt": 1739228400000,
+        "aggregateAt": 1739941199000,
+        "closedAt": 1740092399000
+    },
+    {
+        "id": 122,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "From the Marks Left Behind",
+        "startAt": 1740092400000,
+        "aggregateAt": 1740632399000,
+        "closedAt": 1740783599000
+    },
+    {
+        "id": 123,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Relaxing Tea Time",
+        "startAt": 1740783600000,
+        "aggregateAt": 1741323599000,
+        "closedAt": 1741492799000
+    },
+    {
+        "id": 124,
+        "unit": "theme_park",
+        "eventType": "world_bloom",
+        "name": "With Your Sights on Stardom, Set Sail!",
+        "startAt": 1741492800000,
+        "aggregateAt": 1742525999000,
+        "closedAt": 1742680799000
+    },
+    {
+        "id": 125,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "The First Concerto",
+        "startAt": 1742680800000,
+        "aggregateAt": 1743220799000,
+        "closedAt": 1743371999000
+    },
+    {
+        "id": 126,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Rise as One!",
+        "startAt": 1743372000000,
+        "aggregateAt": 1744171199000,
+        "closedAt": 1744322399000
+    },
+    {
+        "id": 127,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "Knowing the Unseen",
+        "startAt": 1744322400000,
+        "aggregateAt": 1745035199000,
+        "closedAt": 1745186399000
+    },
+    {
+        "id": 128,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "Parallel Harmonies",
+        "startAt": 1745186400000,
+        "aggregateAt": 1745899199000,
+        "closedAt": 1746050399000
+    },
+    {
+        "id": 129,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Whip Yourself into Shape!",
+        "startAt": 1746050400000,
+        "aggregateAt": 1746676799000,
+        "closedAt": 1746845999000
+    },
+    {
+        "id": 130,
+        "unit": "idol",
+        "eventType": "world_bloom",
+        "name": "To One Day Reach that Flowery Stage",
+        "startAt": 1746846000000,
+        "aggregateAt": 1747882799000,
+        "closedAt": 1748037599000
+    },
+    {
+        "id": 131,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "Perspective for Smile",
+        "startAt": 1748037600000,
+        "aggregateAt": 1748577599000,
+        "closedAt": 1748728799000
+    },
+    {
+        "id": 132,
+        "unit": "none",
+        "eventType": "cheerful_carnival",
+        "name": "Stream With Friends♡ Wedding Live!",
+        "startAt": 1748728800000,
+        "aggregateAt": 1749441599000,
+        "closedAt": 1749592799000
+    },
+    {
+        "id": 133,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "Lead to Shine More",
+        "startAt": 1749592800000,
+        "aggregateAt": 1750305599000,
+        "closedAt": 1750456799000
+    },
+    {
+        "id": 134,
+        "unit": "school_refusal",
+        "eventType": "marathon",
+        "name": "A Light Drawn Closer",
+        "startAt": 1750456800000,
+        "aggregateAt": 1751169599000,
+        "closedAt": 1751320799000
+    },
+    {
+        "id": 135,
+        "unit": "street",
+        "eventType": "marathon",
+        "name": "Over Rad Squad!!",
+        "startAt": 1751320800000,
+        "aggregateAt": 1751947199000,
+        "closedAt": 1752098399000
+    },
+    {
+        "id": 136,
+        "unit": "theme_park",
+        "eventType": "marathon",
+        "name": "Halt! Tenma's on the Case",
+        "startAt": 1752098400000,
+        "aggregateAt": 1752638399000,
+        "closedAt": 1752807599000
+    },
+    {
+        "id": 137,
+        "unit": "light_sound",
+        "eventType": "world_bloom",
+        "name": "Our Starry Sky Leading to the Future",
+        "startAt": 1752807600000,
+        "aggregateAt": 1753844399000,
+        "closedAt": 1753999199000
+    },
+    {
+        "id": 138,
+        "unit": "idol",
+        "eventType": "marathon",
+        "name": "Chase My Ideal Idol!",
+        "startAt": 1753999200000,
+        "aggregateAt": 1754625599000,
+        "closedAt": 1754776799000
+    },
+    {
+        "id": 139,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Play That Beautiful Sound!",
+        "startAt": 1754776800000,
+        "aggregateAt": 1755316799000,
+        "closedAt": 1755485999000
+    },
+    {
+        "id": 140,
+        "unit": "none",
+        "eventType": "world_bloom",
+        "name": "With You at SEKAI's Beginnings",
+        "startAt": 1755486000000,
+        "aggregateAt": 1756522799000,
+        "closedAt": 1756677599000
+    },
+    {
+        "id": 141,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Wonderhorror?! A Test of Courage!",
+        "startAt": 1756677600000,
+        "aggregateAt": 1757390399000,
+        "closedAt": 1757541599000
+    },
+    {
+        "id": 142,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Get Fit & Fly! Muscle Training!",
+        "startAt": 1757541600000,
+        "aggregateAt": 1758254399000,
+        "closedAt": 1758405599000
+    },
+    {
+        "id": 143,
+        "unit": "light_sound",
+        "eventType": "marathon",
+        "name": "This Moment With You!",
+        "startAt": 1758405600000,
+        "aggregateAt": 1759118399000,
+        "closedAt": 1759269599000
+    },
+    {
+        "id": 144,
+        "unit": "none",
+        "eventType": "marathon",
+        "name": "Here on Our Dream Stage",
+        "startAt": 1759269600000,
+        "aggregateAt": 1760068799000,
+        "closedAt": 1760306399000
+    }
+]
